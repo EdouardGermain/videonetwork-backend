@@ -6,7 +6,7 @@ var ObjectSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        author: [{ type: Schema.Types.ObjectId, ref: 'Users' }]
+        author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
 
     },
     {// optionnal : add createdAt and updatedAt fields
