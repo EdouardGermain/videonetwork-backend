@@ -2,21 +2,19 @@ var mongoose=require('mongoose');
 
 
 var ObjectSchema = mongoose.Schema({
-        username: {
+        path: {
             type: String,
             required: true
         },
-        mail: {
-            type: String,
-            required: true
-        },
-        password: {
-            type: String,
-            required: true
-        }
+        name: {
+                type: String,
+                required: true
+            }
 
 
-},
+        // décalage temps ?
+
+    },
     {// optionnal : add createdAt and updatedAt fields
         timestamps: true
     });
@@ -24,4 +22,4 @@ var ObjectSchema = mongoose.Schema({
 
 exports.Schema = ObjectSchema;
 
-exports.Model = mongoose.model('Users', ObjectSchema);
+exports.Model = mongoose.model('Subtitles', ObjectSchema);

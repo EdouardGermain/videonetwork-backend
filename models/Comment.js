@@ -2,21 +2,14 @@ var mongoose=require('mongoose');
 
 
 var ObjectSchema = mongoose.Schema({
-        username: {
-            type: String,
-            required: true
-        },
-        mail: {
-            type: String,
-            required: true
-        },
-        password: {
+        text: {
             type: String,
             required: true
         }
 
+        // décalage temps ?
 
-},
+    },
     {// optionnal : add createdAt and updatedAt fields
         timestamps: true
     });
@@ -24,4 +17,4 @@ var ObjectSchema = mongoose.Schema({
 
 exports.Schema = ObjectSchema;
 
-exports.Model = mongoose.model('Users', ObjectSchema);
+exports.Model = mongoose.model('Comments', ObjectSchema);
