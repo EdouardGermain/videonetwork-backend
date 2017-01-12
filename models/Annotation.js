@@ -23,4 +23,4 @@ var ObjectSchema = mongoose.Schema({
 
 exports.Schema = ObjectSchema;
 
-exports.Model = mongoose.model('Comments', ObjectSchema);
+exports.Model = mongoose.model('Annotations', ObjectSchema);
