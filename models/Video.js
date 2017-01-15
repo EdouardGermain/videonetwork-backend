@@ -6,7 +6,10 @@ var ObjectSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
+        author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
+        comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comments' }],
+        annotations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Annotations' }],
+        likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Likes' }]
 
     },
     {// optionnal : add createdAt and updatedAt fields

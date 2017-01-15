@@ -36,11 +36,17 @@ module.exports = function (Object){
 
     };
     module.update =  function(req,res) {
-            Object.Model.update({_id: req.param('id')}, req.body, function (err, result) {
+            Object.Model.update({_id: req.param('id')}, req.body, function (err) {
                 if (err) {
                     res.send(400, {err: err});
                 } else {
-                    res.json(result);
+                    Object.Model.findById(req.param('id'),function (err, result) {
+                        if (err) {
+                            res.send(400, { err: err });
+                        }else{
+                            res.json(result);
+                        }
+                    });
                 }
             });
     };
