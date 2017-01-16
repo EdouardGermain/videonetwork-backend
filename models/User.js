@@ -1,5 +1,4 @@
 var mongoose=require('mongoose');
-var passportLocalMongoose = require('passport-local-mongoose');
 
 var ObjectSchema = mongoose.Schema({
         username: {
@@ -21,7 +20,6 @@ var ObjectSchema = mongoose.Schema({
         timestamps: true
     });
 
-ObjectSchema.plugin(passportLocalMongoose);
 
 exports.Schema = ObjectSchema;
 

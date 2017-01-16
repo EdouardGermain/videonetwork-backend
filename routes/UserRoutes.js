@@ -1,6 +1,7 @@
 
 module.exports = function(app,passport) {
     var userController = require('../controllers/UserController.js');
+    var authController = require('../controllers/AuthController.js')(passport);
 
     /**
     * @api {get} /user/name/:name Voir un user
@@ -29,6 +30,35 @@ module.exports = function(app,passport) {
     *     HTTP/1.1 404 Not Found
     */
     app.get('/user/name/:name', userController.findByName);
+
+    /**
+     * @api {post} /user Création d'un user
+     * @apiName createUser
+     * @apiGroup User
+     *
+     * @apiPermission authentificated
+     *
+     * @apiParam {String} texte message à envoyer.
+     * @apiParam {Integer} idvideo
+     *
+     * @apiSuccess {User} user Retourne le user créée.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 201 OK
+     {
+       "texte": "Message",
+       "idReceiver": 1,
+       "idSender": 12,
+       "createdAt": "2016-11-20T16:20:37.165Z",
+       "updatedAt": "2016-11-20T16:20:37.165Z",
+       "id": 13
+       }
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     */
+
+    app.post('/user', authController.signup);
 
 };
 
@@ -84,33 +114,6 @@ module.exports = function(app,passport) {
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
- */
-
-/**
- * @api {post} /user Création d'un user
- * @apiName createUser
- * @apiGroup User
- *
- * @apiPermission authentificated
- *
- * @apiParam {String} texte message à envoyer.
- * @apiParam {Integer} idvideo
- *
- * @apiSuccess {User} user Retourne le user créée.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 201 OK
- {
-   "texte": "Message",
-   "idReceiver": 1,
-   "idSender": 12,
-   "createdAt": "2016-11-20T16:20:37.165Z",
-   "updatedAt": "2016-11-20T16:20:37.165Z",
-   "id": 13
-   }
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 400 Bad Request
  */
 
 /**

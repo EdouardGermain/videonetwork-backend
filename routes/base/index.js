@@ -6,6 +6,7 @@ var fs = require('fs');
 * */
 
 module.exports = function(app,passport) {
+    var authController = require('../../controllers/AuthController')(passport);
     fs.readdirSync(__dirname+'/../../models').forEach(function(fileName)
         {
             if(fileName.indexOf('.js'))
@@ -18,9 +19,9 @@ module.exports = function(app,passport) {
 
                     app.get(path, objectDAO.findAll);
                     app.get(path+'/:id', objectDAO.findById);
-                    app.post(path, objectDAO.add);
-                    app.put(path+'/:id', objectDAO.update);
-                    app.delete(path+'/:id', objectDAO.remove);
+                    app.post(path,authController.isAuthenticated, objectDAO.add);
+                    app.put(path+'/:id',authController.isAuthenticated, objectDAO.update);
+                    app.delete(path+'/:id',authController.isAuthenticated, objectDAO.remove);
                 }
         });
 

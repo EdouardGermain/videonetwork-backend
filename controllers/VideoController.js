@@ -9,7 +9,7 @@ module.exports.findById = function(req,res)
         .populate('comments')
         .populate('annotations').exec( function (err, result) {
         if (err) {
-            res.send(400, { err: err });
+            res.send(400, { message: err });
         }else{
             res.json(result);
         }

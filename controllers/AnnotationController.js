@@ -7,14 +7,14 @@ module.exports.add = function(req,res)
 {
     Object.Model.create(req.body, function (err, result) {
         if (err) {
-            res.send(400, {err: err});
+            res.send(400, {message: err});
         } else {
             Video.Model.findByIdAndUpdate(req.body.video,
                 {$push: {annotations: result}},
                 {safe: true, upsert: true},
                 function(err) {
                     if (err) {
-                        res.send(400, {err: err});
+                        res.send(400, {message: err});
                     }else{
                         res.send(201, result);
                     }
