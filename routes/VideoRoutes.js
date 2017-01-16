@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var videoDAO = require('../dao/VideoDAO.js');
+    var videoController = require('../controllers/VideoController.js');
 
 };
 

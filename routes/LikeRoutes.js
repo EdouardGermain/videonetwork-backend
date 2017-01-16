@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var LikeDAO = require('../dao/LikeDAO.js');
+    var LikeController = require('../controllers/LikeController.js');
 
 };
 

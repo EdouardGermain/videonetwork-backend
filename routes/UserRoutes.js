@@ -1,5 +1,6 @@
 module.exports = function(app) {
-  var userDAO = require('../dao/UserDAO.js');
+    var userController = require('../controllers/UserController.js');
+
     /**
     * @api {get} /user/name/:name Voir un user
     * @apiName getUserByName

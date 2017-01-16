@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var annotationDAO = require('../dao/AnnotationDAO.js');
+    var annotationController = require('../controllers/AnnotationController.js');
 
 };
 

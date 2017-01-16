@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var commentDAO = require('../dao/CommentDAO.js');
+    var commentController = require('../controllers/CommentController.js');
 
 };
 

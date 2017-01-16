@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var playlistDAO = require('../dao/PlaylistDAO.js');
+    var playlistController = require('../controllers/PlaylistController.js');
 
     /**
      * @api {get} /playlist/:id/video Voir les videos
