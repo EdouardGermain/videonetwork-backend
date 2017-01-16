@@ -1,45 +1,16 @@
 module.exports = function(app) {
-  var userDAO = require('../dao/UserDAO.js');
-    /**
-    * @api {get} /user/name/:name Voir un user
-    * @apiName getUserByName
-    * @apiGroup User
-    *
-    * @apiPermission authentificated
-    *
-    * @apiParam {String} name Nom du user à récupérer.
-    *
-    * @apiSuccess [user] user Retourne le user voulu.
-    *
-    * @apiSuccessExample Success-Response:
-    *     HTTP/1.1 200 OK
-    {
-        "messages": [],
-        "idUser1": 13,
-        "idUser2": 12,
-        "createdAt": "2016-08-19T11:13:21.742Z",
-        "updatedAt": "2016-08-19T11:13:21.742Z",
-        "id": 1
-    }
-    *
-    *
-    * @apiErrorExample Error-Response:
-    *     HTTP/1.1 404 Not Found
-    */
-  app.get('/user/name/:name', userDAO.findByName);
+    var LikeDAO = require('../dao/LikeDAO.js');
 
 };
 
 /**
- * @api {get} /user Voir les users
- * @apiName getAllUser
- * @apiGroup User
+ * @api {get} /like Voir les likes
+ * @apiName getAllLike
+ * @apiGroup Like
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du match à récupérer.
- *
- * @apiSuccess [users] users Retourne toutes les users
+ * @apiSuccess [likes] likes Retourne toutes les likes
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -58,15 +29,15 @@ module.exports = function(app) {
  */
 
  /**
- * @api {get} /user/:id Voir un user
- * @apiName getUser
- * @apiGroup User
+ * @api {get} /like/:id Voir un like
+ * @apiName getLike
+ * @apiGroup Like
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à récupérer.
+ * @apiParam {Integer} id id du like à récupérer.
  *
- * @apiSuccess [user] user Retourne le user voulu.
+ * @apiSuccess [like] like Retourne le like voulu.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -85,16 +56,16 @@ module.exports = function(app) {
  */
 
 /**
- * @api {post} /user Création d'un user
- * @apiName createUser
- * @apiGroup User
+ * @api {post} /like Création d'un like
+ * @apiName createLike
+ * @apiGroup Like
  *
  * @apiPermission authentificated
  *
  * @apiParam {String} texte message à envoyer.
  * @apiParam {Integer} idvideo
  *
- * @apiSuccess {User} user Retourne le user créée.
+ * @apiSuccess {Like} like Retourne le like créée.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 201 OK
@@ -112,13 +83,13 @@ module.exports = function(app) {
  */
 
 /**
- * @api {delete} /user/:id Suppression d'un user
- * @apiName deleteUser
- * @apiGroup User
+ * @api {delete} /like/:id Suppression d'un like
+ * @apiName deleteLike
+ * @apiGroup Like
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à supprimer.
+ * @apiParam {Integer} id id du like à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *

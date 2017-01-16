@@ -1,45 +1,17 @@
 module.exports = function(app) {
-  var userDAO = require('../dao/UserDAO.js');
-    /**
-    * @api {get} /user/name/:name Voir un user
-    * @apiName getUserByName
-    * @apiGroup User
-    *
-    * @apiPermission authentificated
-    *
-    * @apiParam {String} name Nom du user à récupérer.
-    *
-    * @apiSuccess [user] user Retourne le user voulu.
-    *
-    * @apiSuccessExample Success-Response:
-    *     HTTP/1.1 200 OK
-    {
-        "messages": [],
-        "idUser1": 13,
-        "idUser2": 12,
-        "createdAt": "2016-08-19T11:13:21.742Z",
-        "updatedAt": "2016-08-19T11:13:21.742Z",
-        "id": 1
-    }
-    *
-    *
-    * @apiErrorExample Error-Response:
-    *     HTTP/1.1 404 Not Found
-    */
-  app.get('/user/name/:name', userDAO.findByName);
+    var annotationDAO = require('../dao/AnnotationDAO.js');
 
 };
 
 /**
- * @api {get} /user Voir les users
- * @apiName getAllUser
- * @apiGroup User
+ * @api {get} /annotation Voir les annotations
+ * @apiName getAllAnnotation
+ * @apiGroup Annotation
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du match à récupérer.
  *
- * @apiSuccess [users] users Retourne toutes les users
+ * @apiSuccess [annotations] annotations Retourne toutes les annotations
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -54,19 +26,19 @@ module.exports = function(app) {
  *
  *
  * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
+ *     HTTP/1.1 400 Not Found
  */
 
  /**
- * @api {get} /user/:id Voir un user
- * @apiName getUser
- * @apiGroup User
+ * @api {get} /annotation/:id Voir une annotation
+ * @apiName getAnnotation
+ * @apiGroup Annotation
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à récupérer.
+ * @apiParam {Integer} id id de l'annotation à récupérer.
  *
- * @apiSuccess [user] user Retourne le user voulu.
+ * @apiSuccess [annotation] annotation Retourne l'annotation voulue.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -85,16 +57,16 @@ module.exports = function(app) {
  */
 
 /**
- * @api {post} /user Création d'un user
- * @apiName createUser
- * @apiGroup User
+ * @api {post} /annotation Création d'une annotation
+ * @apiName createAnnotation
+ * @apiGroup Annotation
  *
  * @apiPermission authentificated
  *
  * @apiParam {String} texte message à envoyer.
  * @apiParam {Integer} idvideo
  *
- * @apiSuccess {User} user Retourne le user créée.
+ * @apiSuccess {Annotation} annotation Retourne l'annotation créée.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 201 OK
@@ -112,13 +84,13 @@ module.exports = function(app) {
  */
 
 /**
- * @api {delete} /user/:id Suppression d'un user
- * @apiName deleteUser
- * @apiGroup User
+ * @api {delete} /annotation/:id Suppression d'une annotation
+ * @apiName deleteAnnotation
+ * @apiGroup Annotation
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à supprimer.
+ * @apiParam {Integer} id id de l'annotation à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *

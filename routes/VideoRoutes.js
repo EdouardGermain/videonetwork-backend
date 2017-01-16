@@ -1,45 +1,18 @@
 module.exports = function(app) {
-  var userDAO = require('../dao/UserDAO.js');
-    /**
-    * @api {get} /user/name/:name Voir un user
-    * @apiName getUserByName
-    * @apiGroup User
-    *
-    * @apiPermission authentificated
-    *
-    * @apiParam {String} name Nom du user à récupérer.
-    *
-    * @apiSuccess [user] user Retourne le user voulu.
-    *
-    * @apiSuccessExample Success-Response:
-    *     HTTP/1.1 200 OK
-    {
-        "messages": [],
-        "idUser1": 13,
-        "idUser2": 12,
-        "createdAt": "2016-08-19T11:13:21.742Z",
-        "updatedAt": "2016-08-19T11:13:21.742Z",
-        "id": 1
-    }
-    *
-    *
-    * @apiErrorExample Error-Response:
-    *     HTTP/1.1 404 Not Found
-    */
-  app.get('/user/name/:name', userDAO.findByName);
+    var videoDAO = require('../dao/VideoDAO.js');
 
 };
 
 /**
- * @api {get} /user Voir les users
- * @apiName getAllUser
- * @apiGroup User
+ * @api {get} /video Voir les videos
+ * @apiName getAllVideo
+ * @apiGroup Video
  *
  * @apiPermission authentificated
  *
  * @apiParam {Integer} id id du match à récupérer.
  *
- * @apiSuccess [users] users Retourne toutes les users
+ * @apiSuccess [videos] videos Retourne toutes les videos
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -55,18 +28,19 @@ module.exports = function(app) {
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
+ *
  */
 
  /**
- * @api {get} /user/:id Voir un user
- * @apiName getUser
- * @apiGroup User
+ * @api {get} /video/:id Voir un video
+ * @apiName getVideo
+ * @apiGroup Video
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à récupérer.
+ * @apiParam {Integer} id id du video à récupérer.
  *
- * @apiSuccess [user] user Retourne le user voulu.
+ * @apiSuccess [video] video Retourne le video voulu.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -85,16 +59,16 @@ module.exports = function(app) {
  */
 
 /**
- * @api {post} /user Création d'un user
- * @apiName createUser
- * @apiGroup User
+ * @api {post} /video Création d'un video
+ * @apiName createVideo
+ * @apiGroup Video
  *
  * @apiPermission authentificated
  *
  * @apiParam {String} texte message à envoyer.
  * @apiParam {Integer} idvideo
  *
- * @apiSuccess {User} user Retourne le user créée.
+ * @apiSuccess {Video} video Retourne le video créée.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 201 OK
@@ -112,13 +86,13 @@ module.exports = function(app) {
  */
 
 /**
- * @api {delete} /user/:id Suppression d'un user
- * @apiName deleteUser
- * @apiGroup User
+ * @api {delete} /video/:id Suppression d'un video
+ * @apiName deleteVideo
+ * @apiGroup Video
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à supprimer.
+ * @apiParam {Integer} id id du video à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *
