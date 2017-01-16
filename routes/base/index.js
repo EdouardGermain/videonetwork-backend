@@ -5,14 +5,14 @@ var fs = require('fs');
 * use "object"Routes.js to add some routes
 * */
 
-module.exports = function(app) {
+module.exports = function(app,passport) {
     fs.readdirSync(__dirname+'/../../models').forEach(function(fileName)
         {
             if(fileName.indexOf('.js'))
                 {
                     var object = fileName.split(".")[0];
                     var path = "/"+object;
-                    var objectDAO = require('../../dao/'+object+'DAO.js');
+                    var objectDAO = require('../../controllers/'+object+'Controller.js');
 
                     console.log("API REST "+path+" : http://localhost:8085"+path );
 

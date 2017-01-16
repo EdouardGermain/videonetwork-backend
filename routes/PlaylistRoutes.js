@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app,passport) {
     var playlistController = require('../controllers/PlaylistController.js');
 
     /**
@@ -28,7 +28,7 @@ module.exports = function(app) {
      *     HTTP/1.1 404 Not Found
      */
 
-    app.get('/playlist/:id/video/:idvideo', playlistDAO.getAllVideo);
+    app.get('/playlist/:id/video/:idvideo', playlistController.getAllVideo);
 
     /**
      * @api {post} /playlist Création d'un playlist
@@ -57,7 +57,7 @@ module.exports = function(app) {
      *     HTTP/1.1 400 Bad Request
      */
 
-    app.post('/playlist/:id/video/:idvideo', playlistDAO.addVideo);
+    app.post('/playlist/:id/video/:idvideo', playlistController.addVideo);
 
     /**
      * @api {delete} /playlist/:id/video/:idvideo Suppression d'une video d'une playlist
@@ -82,7 +82,7 @@ module.exports = function(app) {
      *     HTTP/1.1 400 Bad Request
      */
 
-    app.delete('/playlist/:id/video/:idvideo', playlistDAO.removeVideo);
+    app.delete('/playlist/:id/video/:idvideo', playlistController.removeVideo);
 
 };
 

@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app,passport) {
     var commentController = require('../controllers/CommentController.js');
 
 };

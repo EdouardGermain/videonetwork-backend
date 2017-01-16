@@ -1,4 +1,5 @@
-module.exports = function(app) {
+
+module.exports = function(app,passport) {
     var userController = require('../controllers/UserController.js');
 
     /**
@@ -27,7 +28,7 @@ module.exports = function(app) {
     * @apiErrorExample Error-Response:
     *     HTTP/1.1 404 Not Found
     */
-  app.get('/user/name/:name', userDAO.findByName);
+    app.get('/user/name/:name', userController.findByName);
 
 };
 
