@@ -2,32 +2,40 @@ var Object = require('../models/Playlist.js');
 
 module.exports = require('./base/index.js')(Object);
 
-module.exports.update =  function(req,res) {
+
+module.exports.getAllVideo =  function(req,res) {
+    Object.Model.findById(req.param('id')).populate('videos').exec(function (err, result) {
+        if (err) {
+            res.send(400, { err: err });
+        }else{
+            res.json(result.videos);
+        }
+    });
+};
+module.exports.addVideo =  function(req,res) {
     Object.Model.findByIdAndUpdate(req.param('id'),
-        {$set : req.body,$addToSet: {videos: req.body['video']}},
-        {multi:true},
+        {$addToSet: {videos: req.param('idvideo')}},
         function(err,result) {
             if (err) {
                 res.send(400, {err: err});
             }else{
-                res.send(201, result);
+                res.send(200, result);
+            }
+        }
+    );
+};
+
+module.exports.removeVideo =  function(req,res) {
+    Object.Model.findByIdAndUpdate(req.param('id'),
+        {$pull: {videos: req.param('idvideo')}},
+        function(err) {
+            if (err) {
+                res.send(400, {err: err});
+            }else{
+                res.send(200, "video removed");
             }
         }
     );
 };
 
 
-
-/*module.exports.update =  function(req,res) {
- Object.Model.findByIdAndUpdate(req.param('id'),
- {$set : req.body,$pull: {videos: req.body['video_to_remove']}},
- {multi:true},
- function(err,result) {
- if (err) {
- res.send(400, {err: err});
- }else{
- res.send(201, result);
- }
- }
- );
- };*/
