@@ -38,6 +38,8 @@ describe("SAMPLE unit test for videos",function(){
             res.status.should.equal(200);
             // Error key should be false.
             //res.body.error.should.equal(false);
+            // Res.text should be empty
+            res.text.should.equal("[]");
             done();
         });
     });
