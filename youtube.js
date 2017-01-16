@@ -6,7 +6,7 @@ var youTube = new YouTube();
 youTube.setKey('AIzaSyB1OOSpTREs85WUMvIgJvLTZKye4BVsoFU');
 
 // Search with id/name, number and result
-youTube.search('Amixem', 1, function(error, result) {
+youTube.search('Amixem', 2, function(error, result) {
   if (error) {
     console.log(error);
   }
