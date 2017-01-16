@@ -25,5 +25,5 @@ fs.readdirSync(__dirname+'/routes/').forEach(function(fileName)
 
 app.listen(8085);
 
-console.log('(not implemented yet) Documentation : http://localhost:8085/apidoc');
+console.log('Documentation : http://localhost:8085/apidoc');
 

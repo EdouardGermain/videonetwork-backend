@@ -5,7 +5,9 @@ var ObjectSchema = mongoose.Schema({
         name: {
             type: String,
             required: true
-        }
+        },
+        author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
+        videos:[{type: mongoose.Schema.Types.ObjectId, ref: 'Videos'}]
 
 
     },

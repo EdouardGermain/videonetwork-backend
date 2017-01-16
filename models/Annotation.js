@@ -11,7 +11,8 @@ var ObjectSchema = mongoose.Schema({
             required: true
         },
         text:String,
-        shape:ShapeSchema
+        shape:ShapeSchema,
+        author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
 
         // décalage temps ?
 
