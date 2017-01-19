@@ -40,7 +40,11 @@ module.exports = function(passport){
                         console.log('Invalid Password');
                         return done(null, false, req.json('Invalid Password'));
                     }
-                    return done(null, user);
+                    req.logIn(user, function(err) {
+                        if (err) { return next(err); }
+                        return done(null, user);
+                    });
+
                 }
             );
 

@@ -16,7 +16,6 @@ fs.readdirSync(__dirname+'/routes/').forEach(function(fileName)
         require(__dirname+"/routes/"+fileName)(app,passport);
     }
 });
-require(__dirname+"/routes/base/index")(app,passport);
 
 app.listen(8085);
 

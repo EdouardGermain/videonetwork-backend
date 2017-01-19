@@ -1,6 +1,6 @@
 module.exports = function(app,passport) {
     var videoController = require('../controllers/VideoController.js');
-
+    require('./base/index')(app,passport,"video");
 };
 
 /**

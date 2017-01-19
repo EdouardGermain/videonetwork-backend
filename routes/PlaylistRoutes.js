@@ -84,6 +84,7 @@ module.exports = function(app,passport) {
 
     app.delete('/playlist/:id/video/:idvideo', playlistController.removeVideo);
 
+    require('./base/index')(app,passport,"playlist");
 };
 
 /**

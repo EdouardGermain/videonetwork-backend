@@ -3,6 +3,7 @@ var mongoose=require('mongoose');
 var ObjectSchema = mongoose.Schema({
         username: {
             type: String,
+            unique : true,
             required: true
         },
         email: {
