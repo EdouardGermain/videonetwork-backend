@@ -11,11 +11,12 @@ require('./config/passport')(passport);
 
 fs.readdirSync(__dirname+'/routes/').forEach(function(fileName)
 {
-    if(fileName.indexOf('.js'))
+    if(fileName.indexOf('.js') && fileName != "base" )
     {
         require(__dirname+"/routes/"+fileName)(app,passport);
     }
 });
+require(__dirname+"/routes/base/index")(app,passport);
 
 app.listen(8085);
 
