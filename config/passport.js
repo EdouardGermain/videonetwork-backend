@@ -74,7 +74,10 @@ module.exports = function(passport){
                             if (err){
                                 return done(err);
                             }
-                            else return done(null, newUser);
+                            else {
+                                delete newUser.password;
+                                return done(null, newUser);
+                            }
                         });
                     }
                 });
