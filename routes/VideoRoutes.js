@@ -13,7 +13,8 @@ module.exports = function(app,passport) {
  *
  * @apiSuccess Array[videos] videos Retourne toutes les videos
  *
- *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
  [
      {
        "_id": "50987e094d99abgtgtb206c71",
