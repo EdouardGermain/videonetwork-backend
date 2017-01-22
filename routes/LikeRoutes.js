@@ -4,102 +4,139 @@ module.exports = function(app,passport) {
 };
 
 /**
- * @api {get} /like Voir les likes
+ * @api {get} /like getAllLike
  * @apiName getAllLike
  * @apiGroup Like
- *
- * @apiPermission authentificated
  *
  * @apiSuccess [likes] likes Retourne toutes les likes
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
+ [
+     {
+     "_id": "58809b1b5824d76267da4b8f",
+     "updatedAt": "2017-01-19T10:55:23.613Z",
+     "createdAt": "2017-01-19T10:55:23.613Z",
+     "rate": 5,
+     "author": "58809078b267b15839f011d1",
+     "__v": 0
+     },
+     {
+        "_id": "58809b1b5824d76267da4b8f",
+        "updatedAt": "2017-01-19T10:55:23.613Z",
+        "createdAt": "2017-01-19T10:55:23.613Z",
+        "rate": 5,
+        "author": "58809078b267b15839f011d1",
+        "__v": 0
+     }
+ ]
  *
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
  */
 
- /**
- * @api {get} /like/:id Voir un like
+/**
+ * @api {get} /like/:id getLikeById
  * @apiName getLike
  * @apiGroup Like
  *
- * @apiPermission authentificated
+ * @apiParam {Integer} id id de l'like à récupérer.
  *
- * @apiParam {Integer} id id du like à récupérer.
- *
- * @apiSuccess [like] like Retourne le like voulu.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
- *
+ * @apiUse ReturnLike
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
  */
 
 /**
- * @api {post} /like Création d'un like
+ * @api {post} /like createLike
  * @apiName createLike
  * @apiGroup Like
  *
  * @apiPermission authentificated
  *
- * @apiParam {String} texte message à envoyer.
- * @apiParam {Integer} idvideo
+ * @apiParam {String} video The video's id.
+ * @apiParam {Number} rate The comment's text.
+ * @apiParam {String} author The author's id.
  *
- * @apiSuccess {Like} like Retourne le like créée.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 201 OK
+ * @apiParamExample {json} Request-Example:
  {
-   "texte": "Message",
-   "idReceiver": 1,
-   "idSender": 12,
-   "createdAt": "2016-11-20T16:20:37.165Z",
-   "updatedAt": "2016-11-20T16:20:37.165Z",
-   "id": 13
-   }
+     "video": "58898078b267b15839cd2dd1",
+     "rate": 4,
+     "author": "58809078b267b15839f011d1"
+ }
+ * @apiUse ReturnLike
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  */
 
 /**
- * @api {delete} /like/:id Suppression d'un like
+ * @api {put} /like/:id updateLike
+ * @apiName updateLike
+ * @apiGroup Like
+ *
+ * @apiPermission authentificated
+ *
+ * @apiParam {Integer} id id du like à modifier.
+ * @apiUse PostLike
+ *
+ * @apiUse ReturnLike
+ *
+ * @apiErrorExample Error-Response:
+ * HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @api {delete} /like/:id deleteLike
  * @apiName deleteLike
  * @apiGroup Like
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du like à supprimer.
+ * @apiParam {Integer} id id de l'like à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  {
-    "message":"success"
+    "message":"removed"
  }
  *
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @apiDefine ReturnLike
+ * @apiSuccess {String} _id The like's id.
+ * @apiSuccess {datetime} updatedAt The like date updated.
+ * @apiSuccess {datetime} createdAt The like date created.
+ * @apiSuccess {Number} rate The like's rate.
+ * @apiSuccess {String} author The author's id.
+ * @apiSuccess {String} __v The like's version.
+ *
+ * @apiSuccessExample Success-Response:
+ *HTTP/1.1 200 OK
+ {
+    "_id": "58809b1b5824d76267da4b8f",
+    "updatedAt": "2017-01-19T10:55:23.613Z",
+    "createdAt": "2017-01-19T10:55:23.613Z",
+    "rate":4,
+    "author": "58809078b267b15839f011d1",
+    "__v": 0
+  }
+ */
+
+/**
+ * @apiDefine PostLike
+
+ * @apiParam {Number} rate The like's rate.
+ * @apiParam {String} author The author's id.
+ *
+ * @apiParamExample {json} Request-Example:
+ {
+     "rate": 3,
+     "author": "58809078b267b15839f011d1"
+ }
  */

@@ -1,11 +1,18 @@
 var mongoose=require('mongoose');
 
 
-var ObjectSchema = mongoose.Schema({
+var ObjectSchema = mongoose.Schema(
+    {
+        name :
+            {
+                type: String,
+                required: true
+            },
         url: {
             type: String,
             required: true
         },
+        thunbmail : String,
         author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
         comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comments' }],
         annotations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Annotations' }],

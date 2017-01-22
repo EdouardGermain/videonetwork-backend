@@ -10,11 +10,28 @@ module.exports = function(passport) {
     };
 
     module.login = function(req, res) { passport.authenticate('login', function(err, user, info) {
-        res.send(200,user);
+        if(err){
+            res.send(500,err);
+        }
+        else if(!user){
+            res.send(400,info);
+        }
+        else{
+            res.send(200,user);
+        }
+
     })(req, res)};
 
     module.signup = function(req, res) { passport.authenticate('signup', function(err, user, info) {
-        res.send(200,user);
+        if(err){
+            res.send(500,err);
+        }
+        else if(!user){
+            res.send(400,info);
+        }
+        else{
+            res.send(200,user);
+        }
     })(req, res)};
 
     module.getCurrentUser = function(req, res){
@@ -23,7 +40,7 @@ module.exports = function(passport) {
 
     module.logout = function(req, res) {
         req.logout();
-        res.json('déconnexion');
+        res.send(200, {message:"logout"});
     };
 
     return module;

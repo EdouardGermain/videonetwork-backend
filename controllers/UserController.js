@@ -7,11 +7,14 @@ module.exports = require('./base/index.js')(Object);
 
 module.exports.findByName = function(req,res)
     {
-        Object.Model.find({name:req.param('name')}, function (err, result) {
+        Object.Model.findOne({username:req.param('name')}, function (err, user) {
             if (err) {
                 res.send(400, { message: err });
-            }else{
-                res.json(result);
+            }else if (!user){
+                res.send(404,{ message: "User not found" });
+            }
+            else{
+                res.json(user);
             }
         });
     };

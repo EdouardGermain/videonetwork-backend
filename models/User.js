@@ -1,6 +1,7 @@
 var mongoose=require('mongoose');
 
-var ObjectSchema = mongoose.Schema({
+var ObjectSchema = mongoose.Schema(
+    {
         username: {
             type: String,
             unique : true,
@@ -12,11 +13,16 @@ var ObjectSchema = mongoose.Schema({
         },
         password: {
             type: String,
-            required: true
-        }
+            required: true,
+            select: false
+        },
+        website : String,
+        description : String,
+        youtube_chanel : String,
+        country : String
 
 
-},
+    },
     {// optionnal : add createdAt and updatedAt fields
         timestamps: true
     });

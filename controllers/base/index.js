@@ -10,7 +10,7 @@ module.exports = function (Object){
     {
         Object.Model.find(null, function (err, result) {
             if (err) {
-                res.send(400, { message: err });
+                res.send(500, { message: err });
             }else{
                 res.json(result);
             }
@@ -19,7 +19,7 @@ module.exports = function (Object){
     module.findById = function(req,res) {
             Object.Model.findById(req.param('id'),function (err, result) {
                 if (err) {
-                    res.send(400, { message: err });
+                    res.send(500, { message: err });
                 }
                 else if(!result){
                     res.send(404, { message: "not found" });

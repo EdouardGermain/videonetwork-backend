@@ -6,9 +6,10 @@ var ObjectSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
-
-        // décalage temps ?
+        author: {
+            type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+            required: true
+        }
 
     },
     {// optionnal : add createdAt and updatedAt fields

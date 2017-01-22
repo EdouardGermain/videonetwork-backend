@@ -13,13 +13,11 @@ module.exports = function(passport){
     };
 
     passport.serializeUser(function(user, done) {
-        console.log('serializing user: ');console.log(user);
         done(null, user._id);
     });
 
     passport.deserializeUser(function(id, done) {
         User.Model.findById(id, function(err, user) {
-            console.log('deserializing user:',user);
             done(err, user);
         });
     });
@@ -28,20 +26,22 @@ module.exports = function(passport){
             passReqToCallback : true
         },
         function(req, username, password, done) {
-            User.Model.findOne({ 'username' :  username },
+            User.Model.findOne({ 'username' :  username }, '+password',
                 function(err, user) {
                     if (err)
                         return done(err);
                     if (!user){
                         console.log('User Not Found with username '+username);
-                        return done(null, false, req.json('User Not found.'));
+                        return done(null, false, {message:"User Not Found"});
                     }
                     if (!isValidPassword(user, password)){
                         console.log('Invalid Password');
-                        return done(null, false, req.json('Invalid Password'));
+                        return done(null, false, {message:"Invalid Password"});
                     }
                     req.logIn(user, function(err) {
                         if (err) { return next(err); }
+                        user = user.toObject();
+                        delete user.password;
                         return done(null, user);
                     });
 
@@ -59,12 +59,10 @@ module.exports = function(passport){
             findOrCreateUser = function(){
                 User.Model.findOne({ 'username' :  username }, function(err, user) {
                     if (err){
-                        console.log('Error in SignUp: '+err);
                         return done(err);
                     }
                     if (user) {
-                        console.log('User already exists with username: '+username);
-                        return done(null, false);
+                        return done(null, false,{message:"User already exists"});
                     } else {
                         var newUser = new User.Model();
 
@@ -74,11 +72,9 @@ module.exports = function(passport){
 
                         newUser.save(function(err) {
                             if (err){
-                                console.log('Error in Saving user: '+err);
-                                throw err;
+                                return done(err);
                             }
-                            console.log('User Registration succesful');
-                            return done(null, newUser);
+                            else return done(null, newUser);
                         });
                     }
                 });

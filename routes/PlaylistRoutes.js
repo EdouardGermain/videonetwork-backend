@@ -1,27 +1,45 @@
 module.exports = function(app,passport) {
     var playlistController = require('../controllers/PlaylistController.js');
-
+    var authController = require('../controllers/AuthController')(passport);
     /**
-     * @api {get} /playlist/:id/video Voir les videos
+     * @api {get} /playlist/:id/video getAllVideoFromPlaylist
      * @apiName getAllVideo
      * @apiGroup Video
      *
-     * @apiPermission authentificated
      *
-     * @apiParam {Integer} id id du match à récupérer.
+     * @apiParam {Integer} id id de la playlist.
      *
-     * @apiSuccess [videos] videos Retourne toutes les videos
+     * @apiSuccess Array[videos] videos Retourne toutes les videos
      *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     {
-       "messages": [],
-       "idUser1": 13,
-       "idUser2": 12,
-       "createdAt": "2016-08-19T11:13:21.742Z",
-       "updatedAt": "2016-08-19T11:13:21.742Z",
-       "id": 1
-     }
+     *
+     [
+         {
+           "_id": "50987e094d99abgtgtb206c71",
+           "updatedAt": "2017-01-22T18:58:40.688Z",
+           "createdAt": "2017-01-22T18:58:40.688Z",
+           "name": "Nom de la vidéo",
+           "url": "youtube.fr?w=azrezr",
+           "thunbmail": "youtube.fr/img.jpg",
+           "author": "58808dac2b70a556a40c98b0",
+           "__v": 0,
+           "likes": [],
+           "annotations": [],
+           "comments": []
+         },
+         {
+           "_id": "588500e094d99ab84b206c71",
+           "updatedAt": "2017-01-22T18:58:40.688Z",
+           "createdAt": "2017-01-22T18:58:40.688Z",
+           "name": "Nom de la vidéo",
+           "url": "youtube.fr?w=azrezr",
+           "thunbmail": "youtube.fr/img.jpg",
+           "author": "58808dac2b70a556a40c98b0",
+           "__v": 0,
+           "likes": [],
+           "annotations": [],
+           "comments": []
+         }
+     ]
      *
      *
      * @apiErrorExample Error-Response:
@@ -31,36 +49,25 @@ module.exports = function(app,passport) {
     app.get('/playlist/:id/video/:idvideo', playlistController.getAllVideo);
 
     /**
-     * @api {post} /playlist Création d'un playlist
-     * @apiName createPlaylist
+     * @api {post} /playlist/:id/video/:idvideo addVideoToPlaylist
+     * @apiName addVideoToPlaylist
      * @apiGroup Playlist
      *
      * @apiPermission authentificated
      *
      * @apiParam {Integer} id id de la playlist concernée
-         * @apiParam {Integer} idvideo id de la video à ajouter
+     * @apiParam {Integer} idvideo id de la video à ajouter
      *
-     * @apiSuccess {Playlist} playlist Retourne le playlist créée.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 201 OK
-     {
-       "texte": "Message",
-       "idReceiver": 1,
-       "idSender": 12,
-       "createdAt": "2016-11-20T16:20:37.165Z",
-       "updatedAt": "2016-11-20T16:20:37.165Z",
-       "id": 13
-       }
+     * @apiUse ReturnPlaylist
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      */
 
-    app.post('/playlist/:id/video/:idvideo', playlistController.addVideo);
+    app.post('/playlist/:id/video/:idvideo', authController.isAuthenticated, playlistController.addVideo);
 
     /**
-     * @api {delete} /playlist/:id/video/:idvideo Suppression d'une video d'une playlist
+     * @api {delete} /playlist/:id/video/:idvideo deleteVideoFromPlaylist
      * @apiName deleteVideoFromPlaylist
      * @apiGroup Playlist
      *
@@ -74,7 +81,7 @@ module.exports = function(app,passport) {
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      {
-        "message":"success"
+        "message":"removed"
      }
      *
      *
@@ -82,31 +89,43 @@ module.exports = function(app,passport) {
      *     HTTP/1.1 400 Bad Request
      */
 
-    app.delete('/playlist/:id/video/:idvideo', playlistController.removeVideo);
+    app.delete('/playlist/:id/video/:idvideo', authController.isAuthenticated,playlistController.removeVideo);
 
     require('./base/index')(app,passport,"playlist");
 };
 
 /**
- * @api {get} /playlist Voir les playlists
+ * @api {get} /playlist getAllPlaylist
  * @apiName getAllPlaylist
  * @apiGroup Playlist
  *
- * @apiPermission authentificated
  *
- *
- * @apiSuccess [playlists] playlists Retourne toutes les playlists
+ * @apiSuccess Array[playlists] playlists Retourne toutes les playlists
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
+ [
+     {
+       "_id": "588508db891ae1bc0b31e98f",
+       "updatedAt": "2017-01-22T19:33:23.984Z",
+       "createdAt": "2017-01-22T19:32:43.074Z",
+       "name": "maplaylist",
+       "__v": 0,
+       "videos": [
+         "588500e094d99ab84b206c71"
+       ]
+     },
+     {
+       "_id": "588500e094d99abfrb206c71",
+       "updatedAt": "2017-01-22T19:33:23.984Z",
+       "createdAt": "2017-01-22T19:32:43.074Z",
+       "name": "maplaylist2",
+       "__v": 0,
+       "videos": [
+         "588500e094d99ab84b206c71"
+       ]
+     }
+ ]
  *
  *
  * @apiErrorExample Error-Response:
@@ -114,26 +133,14 @@ module.exports = function(app,passport) {
  */
 
  /**
- * @api {get} /playlist/:id Voir un playlist
- * @apiName getPlaylist
+ * @api {get} /playlist/:id getPlaylistById
+ * @apiName getPlaylistById
  * @apiGroup Playlist
  *
- * @apiPermission authentificated
  *
  * @apiParam {Integer} id id du playlist à récupérer.
  *
- * @apiSuccess [playlist] playlist Retourne le playlist voulu.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
+ * @apiUse ReturnPlaylist
  *
  *
  * @apiErrorExample Error-Response:
@@ -141,34 +148,38 @@ module.exports = function(app,passport) {
  */
 
 /**
- * @api {post} /playlist Création d'un playlist
+ * @api {post} /playlist createPlaylist
  * @apiName createPlaylist
  * @apiGroup Playlist
  *
  * @apiPermission authentificated
  *
- * @apiParam {String} texte message à envoyer.
- * @apiParam {Integer} idvideo
+ * @apiUse PostPlaylist
  *
- * @apiSuccess {Playlist} playlist Retourne le playlist créée.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 201 OK
- {
-   "texte": "Message",
-   "idReceiver": 1,
-   "idSender": 12,
-   "createdAt": "2016-11-20T16:20:37.165Z",
-   "updatedAt": "2016-11-20T16:20:37.165Z",
-   "id": 13
-   }
+ * @apiUse ReturnPlaylist
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  */
 
 /**
- * @api {delete} /playlist/:id Suppression d'un playlist
+ * @api {put} /playlist/:id updatePlaylist
+ * @apiName updatePlaylist
+ * @apiGroup Playlist
+ *
+ * @apiPermission authentificated
+ *
+ * @apiParam {Integer} id id du playlist à modifier.
+ * @apiUse PostPlaylist
+ *
+ * @apiUse ReturnPlaylist
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @api {delete} /playlist/:id deletePlaylist
  * @apiName deletePlaylist
  * @apiGroup Playlist
  *
@@ -181,10 +192,45 @@ module.exports = function(app,passport) {
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  {
-    "message":"success"
+    "message":"removed"
  }
  *
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @apiDefine ReturnPlaylist
+ * @apiSuccess {String} _id The playlist's id.
+ * @apiSuccess {datetime} updatedAt The playlist date updated.
+ * @apiSuccess {datetime} createdAt The playlist date created.
+ * @apiSuccess {String} name The playlist's name.
+ * @apiSuccess {Array[video]} videos The playlist's videos.
+ * @apiSuccess {String} __v The like's version.
+ *
+ * @apiSuccessExample Success-Response:
+ *HTTP/1.1 200 OK
+     {
+           "_id": "588508db891ae1bc0b31e98f",
+           "updatedAt": "2017-01-22T19:33:23.984Z",
+           "createdAt": "2017-01-22T19:32:43.074Z",
+           "name": "maplaylist",
+           "__v": 0,
+           "videos": [
+             "588500e094d99ab84b206c71"
+           ]
+     }
+
+ */
+
+/**
+ * @apiDefine PostPlaylist
+
+ * @apiParam {String} name The playlist's name.
+ *
+ * @apiParamExample {json} Request-Example:
+ {
+     "name": "maplaylist"
+ }
  */

@@ -1,20 +1,23 @@
 var mongoose=require('mongoose');
 
 var ShapeSchema = mongoose.Schema({
-    max: Number,
-    min: Number
+    type: String,
+    position_x: Number,
+    position_y: Number
 });
 
 var ObjectSchema = mongoose.Schema({
-        time: {
+        time_start: {
             type: Number,
             required: true
+        },
+        time_end: {
+            type: Number
         },
         text:String,
         shape:ShapeSchema,
         author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
 
-        // décalage temps ?
 
     },
     {// optionnal : add createdAt and updatedAt fields

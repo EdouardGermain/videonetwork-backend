@@ -5,52 +5,62 @@ module.exports = function(app,passport) {
 };
 
 /**
- * @api {get} /annotation Voir les annotations
+ * @api {get} /annotation getAllAnnotation
  * @apiName getAllAnnotation
  * @apiGroup Annotation
  *
- * @apiPermission authentificated
  *
- *
- * @apiSuccess [annotations] annotations Retourne toutes les annotations
+ * @apiSuccess Array[annotations] annotations Retourne toutes les annotations
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
+ [
+     {
+        "__v": 0,
+        "updatedAt": "2017-01-22T19:18:06.578Z",
+        "createdAt": "2017-01-22T19:18:06.578Z",
+        "time_start": 12,
+        "time_end": 14,
+        "text": "annotation",
+        "shape": {
+            "type": "triangle",
+            "position_x": 1,
+            "position_y": 4,
+            "_id": "5885056e891ae1bc0b31e98d"
+        },
+        "author": "58808dac2b70a556a40c98b0",
+        "_id": "5885056e891ae1bc0b31e98c"
+     },
+     {
+           "__v": 0,
+           "updatedAt": "2017-01-22T19:18:06.578Z",
+           "createdAt": "2017-01-22T19:18:06.578Z",
+           "time_start": 12,
+           "time_end": 14,
+           "text": "annotation",
+           "shape": {
+               "type": "triangle",
+               "position_x": 1,
+               "position_y": 4,
+               "_id": "5885056e891ae1bc0b31e98d"
+           },
+           "author": "58808dac2b70a556a40c98b0",
+           "_id": "5885056e891ae1bc0b31e98c"
+      }
+
+ ]
  *
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 400 Not Found
  */
 
  /**
- * @api {get} /annotation/:id Voir une annotation
- * @apiName getAnnotation
+ * @api {get} /annotation/:id getAnnotationById
+ * @apiName getAnnotationById
  * @apiGroup Annotation
  *
- * @apiPermission authentificated
  *
  * @apiParam {Integer} id id de l'annotation à récupérer.
  *
- * @apiSuccess [annotation] annotation Retourne l'annotation voulue.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
+ * @apiUse ReturnAnnotation
  *
  *
  * @apiErrorExample Error-Response:
@@ -58,34 +68,39 @@ module.exports = function(app,passport) {
  */
 
 /**
- * @api {post} /annotation Création d'une annotation
+ * @api {post} /annotation createAnnotation
  * @apiName createAnnotation
  * @apiGroup Annotation
  *
  * @apiPermission authentificated
  *
- * @apiParam {String} texte message à envoyer.
- * @apiParam {Integer} idvideo
+ * @apiUse PostAnnotation
  *
- * @apiSuccess {Annotation} annotation Retourne l'annotation créée.
+ * @apiUse ReturnAnnotation
  *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 201 OK
- {
-   "texte": "Message",
-   "idReceiver": 1,
-   "idSender": 12,
-   "createdAt": "2016-11-20T16:20:37.165Z",
-   "updatedAt": "2016-11-20T16:20:37.165Z",
-   "id": 13
-   }
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  */
 
 /**
- * @api {delete} /annotation/:id Suppression d'une annotation
+ * @api {put} /annotation/:id updateAnnotation
+ * @apiName updateAnnotation
+ * @apiGroup Annotation
+ *
+ * @apiPermission authentificated
+ *
+ * @apiParam {Integer} id id de l'Annotation à modifier.
+ * @apiUse PostAnnotation
+ *
+ * @apiUse ReturnAnnotation
+ *
+ * @apiErrorExample Error-Response:
+ * HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @api {delete} /annotation/:id deleteAnnotation
  * @apiName deleteAnnotation
  * @apiGroup Annotation
  *
@@ -98,10 +113,63 @@ module.exports = function(app,passport) {
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  {
-    "message":"success"
+    "message":"removed"
  }
  *
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
+ */
+
+
+/**
+ * @apiDefine ReturnAnnotation
+ * @apiSuccess {String} _id The annotation's id.
+ * @apiSuccess {datetime} updatedAt The annotation updated date.
+ * @apiSuccess {datetime} createdAt The annotation created date.
+ * @apiSuccess {Number} time_start The annotation s time start.
+ * @apiSuccess {Number} time_end The annotation s time end.
+ * @apiSuccess {String} text The annotation s text.
+ * @apiSuccess {Shape} shape The annotation s shape.
+ * @apiSuccess {String} author The annotation created date.
+ * @apiSuccess {String} __v The annotation's version.
+ *
+ * @apiSuccessExample Success-Response:
+ *HTTP/1.1 200 OK
+     {
+        "__v": 0,
+        "updatedAt": "2017-01-22T19:18:06.578Z",
+        "createdAt": "2017-01-22T19:18:06.578Z",
+        "time_start": 12,
+        "time_end": 14,
+        "text": "annotation",
+        "shape": {
+            "type": "triangle",
+            "position_x": 1,
+            "position_y": 4,
+            "_id": "5885056e891ae1bc0b31e98d"
+        },
+        "author": "58808dac2b70a556a40c98b0",
+        "_id": "5885056e891ae1bc0b31e98c"
+     }
+ */
+
+/**
+ * @apiDefine PostAnnotation
+
+ * @apiParam {Number} time_start annotation s time start.
+ * @apiParam {Number} time_end annotation s time end.
+ * @apiParam {String} text Annotation s text
+ * @apiParam {Shape} shape voir exemple requête.
+ * @apiParam {String} author The author's id.
+
+ *
+ * @apiParamExample {json} Request-Example:
+ {
+       "time_start":12,
+       "time_end":14,
+       "text":"annotation",
+       "shape":{ "type":"triangle","position_x":"1","position_y":"4"},
+       "author":"58808dac2b70a556a40c98b0"
+ }
  */
