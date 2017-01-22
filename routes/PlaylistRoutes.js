@@ -1,10 +1,12 @@
 module.exports = function(app,passport) {
     var playlistController = require('../controllers/PlaylistController.js');
     var authController = require('../controllers/AuthController')(passport);
+
+
     /**
      * @api {get} /playlist/:id/video getAllVideoFromPlaylist
      * @apiName getAllVideoFromPlaylist
-     * @apiGroup Video
+     * @apiGroup Playlist
      *
      *
      * @apiParam {Integer} id id de la playlist.
