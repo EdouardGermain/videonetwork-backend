@@ -75,6 +75,7 @@ module.exports = function(passport){
                                 return done(err);
                             }
                             else {
+                                newUser = newUser.toObject();
                                 delete newUser.password;
                                 return done(null, newUser);
                             }
