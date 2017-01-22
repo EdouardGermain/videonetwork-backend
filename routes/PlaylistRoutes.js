@@ -3,7 +3,7 @@ module.exports = function(app,passport) {
     var authController = require('../controllers/AuthController')(passport);
     /**
      * @api {get} /playlist/:id/video getAllVideoFromPlaylist
-     * @apiName getAllVideo
+     * @apiName getAllVideoFromPlaylist
      * @apiGroup Video
      *
      *
