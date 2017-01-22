@@ -91,7 +91,7 @@ module.exports = function(app,passport) {
 
     app.delete('/playlist/:id/video/:idvideo', authController.isAuthenticated,playlistController.removeVideo);
 
-    require('./base/index')(app,passport,"playlist");
+    require('./base/index')(app,passport,"Playlist");
 };
 
 /**

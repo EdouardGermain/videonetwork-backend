@@ -1,7 +1,7 @@
 module.exports = function(app,passport) {
     //var annotationController = require('../controllers/AnnotationController.js');
 
-    require('./base/index')(app,passport,"annotation");
+    require('./base/index')(app,passport,"Annotation");
 };
 
 /**

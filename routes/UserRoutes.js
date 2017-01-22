@@ -33,7 +33,7 @@ module.exports = function(app,passport) {
 
     app.post('/user', authController.signup);
 
-    require('./base/index')(app,passport,"user");
+    require('./base/index')(app,passport,"User");
 };
 
 /**

@@ -1,6 +1,6 @@
 module.exports = function(app,passport) {
     var LikeController = require('../controllers/LikeController.js');
-    require('./base/index')(app,passport,"like");
+    require('./base/index')(app,passport,"Like");
 };
 
 /**

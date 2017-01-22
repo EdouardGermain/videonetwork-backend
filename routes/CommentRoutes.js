@@ -1,6 +1,6 @@
 module.exports = function(app,passport) {
     var commentController = require('../controllers/CommentController.js');
-    require('./base/index')(app,passport,"comment");
+    require('./base/index')(app,passport,"Comment");
 };
 
 /**
