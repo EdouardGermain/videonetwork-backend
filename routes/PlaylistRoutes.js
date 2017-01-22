@@ -210,6 +210,7 @@ module.exports = function(app,passport) {
  * @apiSuccess {datetime} updatedAt The playlist date updated.
  * @apiSuccess {datetime} createdAt The playlist date created.
  * @apiSuccess {String} name The playlist's name.
+ * @apiSuccess {String} author The author's id.
  * @apiSuccess {Array[video]} videos The playlist's videos.
  * @apiSuccess {String} __v The like's version.
  *

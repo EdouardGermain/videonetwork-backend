@@ -137,17 +137,40 @@ module.exports = function(app,passport) {
  * @apiSuccessExample Success-Response:
  *HTTP/1.1 200 OK
  {
-      "__v": 0,
-      "updatedAt": "2017-01-22T18:58:40.688Z",
+      "_id": "588500e094d99ab84b206c71",
+      "updatedAt": "2017-01-22T23:12:20.629Z",
       "createdAt": "2017-01-22T18:58:40.688Z",
       "name": "Nom de la vidéo",
       "url": "youtube.fr?w=azrezr",
       "thunbmail": "youtube.fr/img.jpg",
-      "author": "58808dac2b70a556a40c98b0",
-      "_id": "588500e094d99ab84b206c71",
+      "author": {
+        "_id": "58808dac2b70a556a40c98b0",
+        "updatedAt": "2017-01-19T09:58:04.457Z",
+        "createdAt": "2017-01-19T09:58:04.457Z",
+        "email": "a",
+        "username": "a",
+        "__v": 0
+      },
+      "__v": 0,
       "likes": [],
       "annotations": [],
-      "comments": []
+      "comments": [
+        {
+          "_id": "58853c54610597e6ff73a8a1",
+          "updatedAt": "2017-01-22T23:12:20.625Z",
+          "createdAt": "2017-01-22T23:12:20.625Z",
+          "text": "Ceci est un commentaire",
+          "author": {
+            "_id": "58853c13610597e6ff73a8a0",
+            "updatedAt": "2017-01-22T23:11:15.618Z",
+            "createdAt": "2017-01-22T23:11:15.618Z",
+            "email": "fre",
+            "username": "aze",
+            "__v": 0
+          },
+          "__v": 0
+        }
+      ]
 }
  */
 
@@ -158,13 +181,11 @@ module.exports = function(app,passport) {
  * @apiParam {String} name The video's name.
  * @apiParam {String} url The video's url.
  * @apiParam {String} [thunbmail] The video's thunbmail.
- * @apiParam {String} author The author's id.
  *
  * @apiParamExample {json} Request-Example:
  {
 	"name":"Nom de la vidéo",
     "url":"youtube.fr?w=azrezr",
-  	"thunbmail":"youtube.fr/img.jpg",
-    "author":"58808dac2b70a556a40c98b0"
+  	"thunbmail":"youtube.fr/img.jpg"
 }
  */

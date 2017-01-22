@@ -161,7 +161,6 @@ module.exports = function(app,passport) {
  * @apiParam {Number} time_end annotation s time end.
  * @apiParam {String} text Annotation s text
  * @apiParam {Shape} shape voir exemple requête.
- * @apiParam {String} author The author's id.
 
  *
  * @apiParamExample {json} Request-Example:
@@ -169,7 +168,6 @@ module.exports = function(app,passport) {
        "time_start":12,
        "time_end":14,
        "text":"annotation",
-       "shape":{ "type":"triangle","position_x":"1","position_y":"4"},
-       "author":"58808dac2b70a556a40c98b0"
+       "shape":{ "type":"triangle","position_x":"1","position_y":"4"}
  }
  */

@@ -132,11 +132,9 @@ module.exports = function(app,passport) {
  * @apiDefine PostLike
 
  * @apiParam {Number} rate The like's rate.
- * @apiParam {String} author The author's id.
  *
  * @apiParamExample {json} Request-Example:
  {
-     "rate": 3,
-     "author": "58809078b267b15839f011d1"
+     "rate": 3
  }
  */

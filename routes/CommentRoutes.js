@@ -133,11 +133,9 @@ module.exports = function(app,passport) {
  * @apiDefine PostComment
 
  * @apiParam {String} text The comment's text.
- * @apiParam {String} author The author's id.
  *
  * @apiParamExample {json} Request-Example:
  {
-     "text": "Ceci est un commentaire",
-     "author": "58809078b267b15839f011d1"
+     "text": "Ceci est un commentaire"
  }
  */
