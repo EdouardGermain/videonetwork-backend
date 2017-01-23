@@ -10,7 +10,7 @@ var server = supertest.agent("http://localhost:8085");
 describe("SAMPLE unit test for server",function(){
 
     // #1 should return home page
-    it("should contact server",function(done){
+    it("should contact server and handle 404",function(done){
         server
             .get("/")
             .expect("Content-type",/json/)
