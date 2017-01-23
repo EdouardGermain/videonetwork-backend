@@ -5,15 +5,24 @@ var should = require("should");
 
 var server = supertest.agent("http://localhost:8085");
 
+var otherName = "other";
+var otherPass = "otherpass";
+var otherId;
+var otherCookie;
+
+//set the user list length
+var listUserLength;
+server
+    .get("/user")
+    .expect("Content-type",/json/)
+    .end(function(err, res){
+    listUserLength = res.body.length;
+});
+
 // UNIT test begin
+describe("SAMPLE unit test for users",function(){
 
-describe("SAMPLE unit test for videos",function(){
-
-    var listUserLength = 1;
-    var otherName = "other";
-    var otherPass = "otherpass";
-
-    it("should return list with one user",function(done){
+    it("should return list user length",function(done){
         server
             .get("/user")
             .expect("Content-type",/json/)
@@ -38,7 +47,7 @@ describe("SAMPLE unit test for videos",function(){
 
     });
 
-    it("should return list with two user",function(done){
+    it("should return list with the new user",function(done){
         server
             .get("/user")
             .expect("Content-type",/json/)
@@ -49,9 +58,6 @@ describe("SAMPLE unit test for videos",function(){
             done();
         });
     });
-
-    var otherId;
-    var otherCookie;
 
     it("should login the new user",function(done){
         server
@@ -64,18 +70,6 @@ describe("SAMPLE unit test for videos",function(){
             res.body.username.should.equal(otherName);
             otherId = res.body._id;
             otherCookie = res.request.cookies;
-
-            /*it("should delete a user",function(done){
-                server.delete("/user/" + otherId)
-                    .expect("Content-type",/json/)
-                    .expect(200)
-                    .end(function(err,res){
-                    //res.status.should.equal(200);
-                    //res.body.error.should.equal(false);
-                    //res.body.data.should.equal(30);
-                    done();
-                });
-            });*/
 
             done();
         });
@@ -95,7 +89,7 @@ describe("SAMPLE unit test for videos",function(){
         });
     });
 
-    it("should return list with one user",function(done){
+    it("should return list with one user less",function(done){
         server
             .get("/user")
             .expect("Content-type",/json/)
