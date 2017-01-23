@@ -129,8 +129,8 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine ReturnUser
  * @apiSuccess {String} _id The user's id.
- * @apiSuccess {datetime} updatedAt The users firstname.
- * @apiSuccess {datetime} createdAt The users firstname.
+ * @apiSuccess {Datetime} updatedAt The users date updated.
+ * @apiSuccess {Datetime} createdAt The users date created.
  * @apiSuccess {String} email The user's email.
  * @apiSuccess {String} username The user's username.
  * @apiSuccess {String} website The user's website.

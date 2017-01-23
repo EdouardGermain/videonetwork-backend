@@ -207,8 +207,8 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine ReturnPlaylist
  * @apiSuccess {String} _id The playlist's id.
- * @apiSuccess {datetime} updatedAt The playlist date updated.
- * @apiSuccess {datetime} createdAt The playlist date created.
+ * @apiSuccess {Datetime} updatedAt The playlist date updated.
+ * @apiSuccess {Datetime} createdAt The playlist date created.
  * @apiSuccess {String} name The playlist's name.
  * @apiSuccess {String} author The author's id.
  * @apiSuccess {Array[video]} videos The playlist's videos.

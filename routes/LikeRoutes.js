@@ -110,8 +110,8 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine ReturnLike
  * @apiSuccess {String} _id The like's id.
- * @apiSuccess {datetime} updatedAt The like date updated.
- * @apiSuccess {datetime} createdAt The like date created.
+ * @apiSuccess {Datetime} updatedAt The like date updated.
+ * @apiSuccess {Datetime} createdAt The like date created.
  * @apiSuccess {Number} rate The like's rate.
  * @apiSuccess {String} author The author's id.
  * @apiSuccess {String} __v The like's version.

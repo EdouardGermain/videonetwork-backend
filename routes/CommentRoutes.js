@@ -111,8 +111,8 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine ReturnComment
  * @apiSuccess {String} _id The comment's id.
- * @apiSuccess {datetime} updatedAt The comment date updated.
- * @apiSuccess {datetime} createdAt The comment date created.
+ * @apiSuccess {Datetime} updatedAt The comment date updated.
+ * @apiSuccess {Datetime} createdAt The comment date created.
  * @apiSuccess {String} text The comment's text.
  * @apiSuccess {String} author The author's id.
  * @apiSuccess {String} __v The comment's version.

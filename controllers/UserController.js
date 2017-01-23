@@ -25,18 +25,21 @@ module.exports.findByName = function(req,res)
     };
 
 module.exports.update =  function(req,res) {
-    req.body.password = createHash(req.body.password);
-    Object.Model.update({_id: req.param('id')}, req.body, function (err) {
-        if (err) {
-            res.send(400, {message: err});
-        } else {
-            Object.Model.findById(req.param('id'),function (err, result) {
-                if (err) {
-                    res.send(400, { message: err });
-                }else{
-                    res.json(result);
-                }
-            });
-        }
-    });
+    if(req.body.password) req.body.password = createHash(req.body.password);
+    if(req.param('id')==req.user._id){
+        Object.Model.update({_id: req.param('id')}, req.body, function (err) {
+            if (err) {
+                res.send(400, {message: err});
+            } else {
+                Object.Model.findById(req.param('id'),function (err, result) {
+                    if (err) {
+                        res.send(400, { message: err });
+                    }else{
+                        res.json(result);
+                    }
+                });
+            }
+        });
+    }else return res.send(401, {message: "Unauthorized"});
+
 };

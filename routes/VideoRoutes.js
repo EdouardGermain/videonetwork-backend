@@ -123,8 +123,8 @@ module.exports = function(app,passport) {
  *
  * @apiDefine ReturnVideo
  * @apiSuccess {String} _id The video's id.
- * @apiSuccess {datetime} updatedAt The video date updated.
- * @apiSuccess {datetime} createdAt The video date created.
+ * @apiSuccess {Datetime} updatedAt The video date updated.
+ * @apiSuccess {Datetime} createdAt The video date created.
  * @apiSuccess {String} name The video's name.
  * @apiSuccess {String} url The video's url.
  * @apiSuccess {String} thunbmail The video's thunbmail.
@@ -132,7 +132,7 @@ module.exports = function(app,passport) {
  * @apiSuccess {Array[Comment]} comments The video's comments.
  * @apiSuccess {Array[Annotation]} annotations The video's annotations.
  * @apiSuccess {Array[Like]} likes The video's likes.
- * @apiSuccess {String} __v The user's version.
+ * @apiSuccess {String} __v The video's version.
  *
  * @apiSuccessExample Success-Response:
  *HTTP/1.1 200 OK

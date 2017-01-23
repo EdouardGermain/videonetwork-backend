@@ -125,8 +125,8 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine ReturnAnnotation
  * @apiSuccess {String} _id The annotation's id.
- * @apiSuccess {datetime} updatedAt The annotation updated date.
- * @apiSuccess {datetime} createdAt The annotation created date.
+ * @apiSuccess {Datetime} updatedAt The annotation updated date.
+ * @apiSuccess {Datetime} createdAt The annotation created date.
  * @apiSuccess {Number} time_start The annotation s time start.
  * @apiSuccess {Number} time_end The annotation s time end.
  * @apiSuccess {String} text The annotation s text.
