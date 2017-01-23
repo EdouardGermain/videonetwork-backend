@@ -5,8 +5,14 @@ var bodyParser = require('body-parser');
 
 module.exports = function(app,passport) {
 
+    var allowCrossDomain = function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    }
     app.use('/apidoc', express.static('apidoc'));
     app.use(bodyParser.json());
+    app.use(allowCrossDomain);
 
     app.use(expressSession({
         secret: 'mySecretKey',
