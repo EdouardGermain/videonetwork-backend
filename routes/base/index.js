@@ -15,7 +15,7 @@ module.exports = function(app,passport,object) {
     app.get(path+'/:id', objectDAO.findById);
     app.post(path, authController.isAuthenticated,objectDAO.add);
     app.put(path+'/:id', authController.isAuthenticated, objectDAO.update);
-    app.delete(path+'/:id', authController.isAuthenticated, objectDAO.remove);
+    app.delete(path+'/:id', objectDAO.remove);
 
     console.log("API REST "+path+" : http://localhost:8085"+path );
 };
