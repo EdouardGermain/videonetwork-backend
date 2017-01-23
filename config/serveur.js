@@ -9,7 +9,9 @@ module.exports = function(app,passport) {
     app.use(bodyParser.json());
 
     app.use(expressSession({
-        secret: 'mySecretKey'
+        secret: 'mySecretKey',
+        resave: true,
+        saveUninitialized: true
     }));
 
     app.use(passport.initialize());

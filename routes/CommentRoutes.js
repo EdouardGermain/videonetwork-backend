@@ -1,90 +1,93 @@
 module.exports = function(app,passport) {
     var commentController = require('../controllers/CommentController.js');
-    require('./base/index')(app,passport,"comment");
+    require('./base/index')(app,passport,"Comment");
 };
 
 /**
- * @api {get} /comment Voir les commentaires
+ * @api {get} /comment getAllComment
  * @apiName getAllComment
  * @apiGroup Comment
- *
- * @apiPermission authentificated
- *
  *
  * @apiSuccess [comments] comments Retourne toutes les comments
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
+ [
+     {
+     "_id": "58809b1b5824d76267da4b8f",
+     "updatedAt": "2017-01-19T10:55:23.613Z",
+     "createdAt": "2017-01-19T10:55:23.613Z",
+     "text": "azerfgrgerefty",
+     "author": "58809078b267b15839f011d1",
+     "__v": 0
+     },
+     {
+        "_id": "58809b1b5824d76267da4b8f",
+        "updatedAt": "2017-01-19T10:55:23.613Z",
+        "createdAt": "2017-01-19T10:55:23.613Z",
+        "text": "azerfgrgerefty",
+        "author": "58809078b267b15839f011d1",
+        "__v": 0
+     }
+ ]
  *
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
  */
 
  /**
- * @api {get} /comment/:id Voir un commentaire
+ * @api {get} /comment/:id getCommentById
  * @apiName getComment
  * @apiGroup Comment
  *
- * @apiPermission authentificated
- *
  * @apiParam {Integer} id id de l'comment à récupérer.
  *
- * @apiSuccess [comment] comment Retourne l'comment voulue.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
- *
+ * @apiUse ReturnComment
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
  */
 
 /**
- * @api {post} /comment Création d'un commentaire
+ * @api {post} /comment createComment
  * @apiName createComment
  * @apiGroup Comment
  *
  * @apiPermission authentificated
  *
- * @apiParam {String} texte message à envoyer.
- * @apiParam {Integer} idvideo
+ * @apiParam {String} video The video's id.
+ * @apiParam {String} text The comment's text.
+ * @apiParam {String} author The author's id.
  *
- * @apiSuccess {Comment} comment Retourne le commentaire créé.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 201 OK
+ * @apiParamExample {json} Request-Example:
  {
-   "texte": "Message",
-   "idReceiver": 1,
-   "idSender": 12,
-   "createdAt": "2016-11-20T16:20:37.165Z",
-   "updatedAt": "2016-11-20T16:20:37.165Z",
-   "id": 13
-   }
+     "video": "58898078b267b15839cd2dd1",
+     "text": "Ceci est un commentaire",
+     "author": "58809078b267b15839f011d1"
+ }
+
+ * @apiUse ReturnComment
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  */
 
 /**
- * @api {delete} /comment/:id Suppression d'un comment
+ * @api {put} /comment/:id updateComment
+ * @apiName updateComment
+ * @apiGroup Comment
+ *
+ * @apiPermission authentificated
+ *
+ * @apiParam {Integer} id id du comment à modifier.
+ * @apiUse PostComment
+ *
+ * @apiUse ReturnComment
+ *
+ * @apiErrorExample Error-Response:
+ * HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @api {delete} /comment/:id deleteComment
  * @apiName deleteComment
  * @apiGroup Comment
  *
@@ -97,10 +100,42 @@ module.exports = function(app,passport) {
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  {
-    "message":"success"
+    "message":"removed"
  }
  *
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @apiDefine ReturnComment
+ * @apiSuccess {String} _id The comment's id.
+ * @apiSuccess {Datetime} updatedAt The comment date updated.
+ * @apiSuccess {Datetime} createdAt The comment date created.
+ * @apiSuccess {String} text The comment's text.
+ * @apiSuccess {String} author The author's id.
+ * @apiSuccess {String} __v The comment's version.
+ *
+ * @apiSuccessExample Success-Response:
+ *HTTP/1.1 200 OK
+ {
+    "_id": "58809b1b5824d76267da4b8f",
+    "updatedAt": "2017-01-19T10:55:23.613Z",
+    "createdAt": "2017-01-19T10:55:23.613Z",
+    "text": "azerfgrgerefty",
+    "author": "58809078b267b15839f011d1",
+    "__v": 0
+  }
+ */
+
+/**
+ * @apiDefine PostComment
+
+ * @apiParam {String} text The comment's text.
+ *
+ * @apiParamExample {json} Request-Example:
+ {
+     "text": "Ceci est un commentaire"
+ }
  */

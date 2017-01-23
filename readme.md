@@ -12,5 +12,12 @@ npm install apidoc -g
  TESTS
 */
 
-to do
+mocha tests/MainTest.js 
 
+
+/*
+ KILL NODE
+*/
+
+ps -aef | grep 'node' 
+kill pid

@@ -1,30 +1,48 @@
 module.exports = function(app,passport) {
     var videoController = require('../controllers/VideoController.js');
-    require('./base/index')(app,passport,"video");
+    require('./base/index')(app,passport,"Video");
 };
 
 /**
- * @api {get} /video Voir les videos
+ * @api {get} /video getAllVideo
  * @apiName getAllVideo
  * @apiGroup Video
  *
- * @apiPermission authentificated
  *
  * @apiParam {Integer} id id du match à récupérer.
  *
- * @apiSuccess [videos] videos Retourne toutes les videos
+ * @apiSuccess Array[videos] videos Retourne toutes les videos
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
- *
+ [
+     {
+       "_id": "50987e094d99abgtgtb206c71",
+       "updatedAt": "2017-01-22T18:58:40.688Z",
+       "createdAt": "2017-01-22T18:58:40.688Z",
+       "name": "Nom de la vidéo",
+       "url": "youtube.fr?w=azrezr",
+       "thunbmail": "youtube.fr/img.jpg",
+       "author": "58808dac2b70a556a40c98b0",
+       "__v": 0,
+       "likes": [],
+       "annotations": [],
+       "comments": []
+     },
+     {
+       "_id": "588500e094d99ab84b206c71",
+       "updatedAt": "2017-01-22T18:58:40.688Z",
+       "createdAt": "2017-01-22T18:58:40.688Z",
+       "name": "Nom de la vidéo",
+       "url": "youtube.fr?w=azrezr",
+       "thunbmail": "youtube.fr/img.jpg",
+       "author": "58808dac2b70a556a40c98b0",
+       "__v": 0,
+       "likes": [],
+       "annotations": [],
+       "comments": []
+     }
+ ]
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -32,61 +50,53 @@ module.exports = function(app,passport) {
  */
 
  /**
- * @api {get} /video/:id Voir un video
+ * @api {get} /video/:id getVideoById
  * @apiName getVideo
  * @apiGroup Video
  *
- * @apiPermission authentificated
  *
  * @apiParam {Integer} id id du video à récupérer.
  *
- * @apiSuccess [video] video Retourne le video voulu.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- {
-   "messages": [],
-   "idUser1": 13,
-   "idUser2": 12,
-   "createdAt": "2016-08-19T11:13:21.742Z",
-   "updatedAt": "2016-08-19T11:13:21.742Z",
-   "id": 1
- }
- *
+ * @apiUse ReturnVideo
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
  */
 
 /**
- * @api {post} /video Création d'un video
+ * @api {post} /video createVideo
  * @apiName createVideo
  * @apiGroup Video
  *
  * @apiPermission authentificated
  *
- * @apiParam {String} texte message à envoyer.
- * @apiParam {Integer} idvideo
+ * @apiUse PostVideo
  *
- * @apiSuccess {Video} video Retourne le video créée.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 201 OK
- {
-   "texte": "Message",
-   "idReceiver": 1,
-   "idSender": 12,
-   "createdAt": "2016-11-20T16:20:37.165Z",
-   "updatedAt": "2016-11-20T16:20:37.165Z",
-   "id": 13
-   }
+ * @apiUse ReturnVideo
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  */
 
+
 /**
- * @api {delete} /video/:id Suppression d'un video
+ * @api {put} /video/:id updateVideo
+ * @apiName updateVideo
+ * @apiGroup Video
+ *
+ * @apiPermission authentificated
+ *
+ * @apiParam {Integer} id id du video à modifier.
+ * @apiUse PostVideo
+ *
+ * @apiUse ReturnVideo
+ *
+ * @apiErrorExample Error-Response:
+ * HTTP/1.1 400 Bad Request
+ */
+
+/**
+ * @api {delete} /video/:id deleteVideo
  * @apiName deleteVideo
  * @apiGroup Video
  *
@@ -99,10 +109,83 @@ module.exports = function(app,passport) {
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  {
-    "message":"success"
+    "message":"removed"
  }
  *
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
+ */
+
+
+
+/**
+ *
+ * @apiDefine ReturnVideo
+ * @apiSuccess {String} _id The video's id.
+ * @apiSuccess {Datetime} updatedAt The video date updated.
+ * @apiSuccess {Datetime} createdAt The video date created.
+ * @apiSuccess {String} name The video's name.
+ * @apiSuccess {String} url The video's url.
+ * @apiSuccess {String} thunbmail The video's thunbmail.
+ * @apiSuccess {String} author The video's author.
+ * @apiSuccess {Array[Comment]} comments The video's comments.
+ * @apiSuccess {Array[Annotation]} annotations The video's annotations.
+ * @apiSuccess {Array[Like]} likes The video's likes.
+ * @apiSuccess {String} __v The video's version.
+ *
+ * @apiSuccessExample Success-Response:
+ *HTTP/1.1 200 OK
+ {
+      "_id": "588500e094d99ab84b206c71",
+      "updatedAt": "2017-01-22T23:12:20.629Z",
+      "createdAt": "2017-01-22T18:58:40.688Z",
+      "name": "Nom de la vidéo",
+      "url": "youtube.fr?w=azrezr",
+      "thunbmail": "youtube.fr/img.jpg",
+      "author": {
+        "_id": "58808dac2b70a556a40c98b0",
+        "updatedAt": "2017-01-19T09:58:04.457Z",
+        "createdAt": "2017-01-19T09:58:04.457Z",
+        "email": "a",
+        "username": "a",
+        "__v": 0
+      },
+      "__v": 0,
+      "likes": [],
+      "annotations": [],
+      "comments": [
+        {
+          "_id": "58853c54610597e6ff73a8a1",
+          "updatedAt": "2017-01-22T23:12:20.625Z",
+          "createdAt": "2017-01-22T23:12:20.625Z",
+          "text": "Ceci est un commentaire",
+          "author": {
+            "_id": "58853c13610597e6ff73a8a0",
+            "updatedAt": "2017-01-22T23:11:15.618Z",
+            "createdAt": "2017-01-22T23:11:15.618Z",
+            "email": "fre",
+            "username": "aze",
+            "__v": 0
+          },
+          "__v": 0
+        }
+      ]
+}
+ */
+
+/**
+ *
+ * @apiDefine PostVideo
+
+ * @apiParam {String} name The video's name.
+ * @apiParam {String} url The video's url.
+ * @apiParam {String} [thunbmail] The video's thunbmail.
+ *
+ * @apiParamExample {json} Request-Example:
+ {
+	"name":"Nom de la vidéo",
+    "url":"youtube.fr?w=azrezr",
+  	"thunbmail":"youtube.fr/img.jpg"
+}
  */
