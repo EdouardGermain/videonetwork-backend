@@ -1,3 +1,4 @@
+<script>
 var url = "https://node.edouardg.fr";
 var http = new XMLHttpRequest();
 var path = "/login";
@@ -19,6 +20,7 @@ http.onreadystatechange = function () {
         http2.open("GET", url+path, true);
 
         http2.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        http2.setRequestHeader("Origin", "http://www.edouardg.fr");
         http2.withCredentials = true;
 
         http2.onreadystatechange = function () {
@@ -35,3 +37,4 @@ http.onreadystatechange = function () {
     }
 };
 http.send(params);
+</script>
