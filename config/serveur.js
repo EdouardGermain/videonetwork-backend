@@ -6,9 +6,8 @@ var bodyParser = require('body-parser');
 module.exports = function(app,passport) {
 
     var allowCrossDomain = function(req, res, next) {
-        res.header('Access-Control-Allow-Origin', 'http://www.edouardg.fr');
         res.header('Access-Control-Allow-Credentials', true);
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Set-Cookie, Content-Type, Accept");
+        res.header("Access-Control-Allow-Headers", "Set-Cookie, Content-Type, Accept");
         next();
     }
     app.use('/apidoc', express.static('apidoc'));
