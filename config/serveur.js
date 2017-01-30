@@ -26,7 +26,8 @@ module.exports = function(app,passport) {
         saveUninitialized: true,
         cookie: {
             secure: false,
-            httpOnly : false
+            httpOnly : false,
+            Path:"/"
         }
     }));
 
