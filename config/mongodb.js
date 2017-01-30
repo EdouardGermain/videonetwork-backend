@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-const FS = require('fs');
-const CA = FS.readFileSync(__dirname + '/mongodb.pem');
+//const FS = require('fs');
+//const CA = FS.readFileSync(__dirname + '/mongodb.pem');
 
 module.exports = function() {
     mongoose.Promise = global.Promise;
