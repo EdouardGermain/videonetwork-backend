@@ -28,7 +28,6 @@ module.exports = function(app,passport) {
         resave: true,
         saveUninitialized: true,
         cookie: {
-            domain : "http://localhost",
             secure: false,
             httpOnly : false,
             Path:"/",
