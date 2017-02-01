@@ -1,9 +1,12 @@
 var expressSession = require('express-session');
 var express = require('express');
 var bodyParser = require('body-parser');
+const MongoStore = require('connect-mongo')(expressSession);
 
 
 module.exports = function(app,passport) {
+
+
 
     var allowCrossDomain = function(req, res, next) {
 
@@ -21,14 +24,22 @@ module.exports = function(app,passport) {
     app.use(allowCrossDomain);
 
     app.use(expressSession({
-        secret: 'mySecretKey',
+        secret: '$2a$10$UtpT9b.9tejG79vIve6/kuPFGw1/QaIPNMtwofzrhTpfpzlpbK/Xe',
         resave: true,
         saveUninitialized: true,
         cookie: {
+            domain : "http://localhost",
             secure: false,
             httpOnly : false,
-            Path:"/"
-        }
+            Path:"/",
+            maxAge: 3600000
+        },
+        store: new MongoStore({
+            url: 'mongodb://localhost/videonetwork-sessions',
+            autoRemove: 'interval',
+            autoRemoveInterval: 60
+        })
+
     }));
 
     app.use(passport.initialize());
