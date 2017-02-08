@@ -16,6 +16,7 @@ module.exports = function(app,passport) {
             res.header('Access-Control-Allow-Origin', origin);
         }
         res.header('Access-Control-Allow-Credentials', true);
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Set-Cookie, Content-Type, Accept");
         next();
     }
