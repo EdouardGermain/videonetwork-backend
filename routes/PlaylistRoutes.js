@@ -142,7 +142,7 @@ module.exports = function(app,passport) {
  * @apiGroup Playlist
  *
  *
- * @apiParam {Integer} id id du playlist à récupérer.
+ * @apiParam {String} id id du playlist à récupérer.
  *
  * @apiUse ReturnPlaylist
  *
@@ -173,7 +173,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du playlist à modifier.
+ * @apiParam {String} id id du playlist à modifier.
  * @apiUse PostPlaylist
  *
  * @apiUse ReturnPlaylist
@@ -189,7 +189,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du playlist à supprimer.
+ * @apiParam {String} id id du playlist à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *

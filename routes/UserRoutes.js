@@ -80,7 +80,7 @@ module.exports = function(app,passport) {
  * @apiName getUser
  * @apiGroup User
  *
- * @apiParam {Integer} id id du user à récupérer.
+ * @apiParam {String} id id du user à récupérer.
  *
  * @apiUse ReturnUser
  *
@@ -95,7 +95,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à modifier.
+ * @apiParam {String} id id du user à modifier.
  * @apiUse PostUser
  *
  * @apiUse ReturnUser
@@ -111,7 +111,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du user à supprimer.
+ * @apiParam {String} id id du user à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *

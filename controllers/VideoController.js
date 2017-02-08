@@ -50,3 +50,37 @@ module.exports.findById = function(req,res)
         }
     });
 };
+
+    module.exports.findByIdYoutube = function(req,res)
+    {
+        Object.Model.find(req.param('youtube'))
+            .populate('author')
+            .populate({
+                path: 'comments',
+                populate: {
+                    path: 'author'
+                }
+            })
+            .populate({
+                path: 'likes',
+                populate: {
+                    path: 'author'
+                }
+            })
+            .populate({
+                path: 'annotations',
+                populate: {
+                    path: 'author'
+                }
+            })
+            .then( function (err, result) {
+                if (err) {
+                    res.send(400, { message: err });
+                }else if (!result){
+                    res.send(404, { message: "Not found" });
+                }
+                else{
+                    res.json(result);
+                }
+            });
+};

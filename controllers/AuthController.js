@@ -39,6 +39,7 @@ module.exports = function(passport) {
     };
 
     module.logout = function(req, res) {
+        req.session.destroy();
         req.logout();
         res.send(200, {message:"logout"});
     };

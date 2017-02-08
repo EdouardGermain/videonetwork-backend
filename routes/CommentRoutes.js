@@ -38,7 +38,7 @@ module.exports = function(app,passport) {
  * @apiName getComment
  * @apiGroup Comment
  *
- * @apiParam {Integer} id id de l'comment à récupérer.
+ * @apiParam {String} id id de l'comment à récupérer.
  *
  * @apiUse ReturnComment
  *
@@ -77,7 +77,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du comment à modifier.
+ * @apiParam {String} id id du comment à modifier.
  * @apiUse PostComment
  *
  * @apiUse ReturnComment
@@ -93,7 +93,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id de l'comment à supprimer.
+ * @apiParam {String} id id de l'comment à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *

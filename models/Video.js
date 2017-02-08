@@ -8,10 +8,11 @@ var ObjectSchema = mongoose.Schema(
                 type: String,
                 required: true
             },
-        url: {
+        youtube: {
             type: String,
             required: true
         },
+        privacy: Boolean,
         thunbmail : String,
         author: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
         comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comments' }],

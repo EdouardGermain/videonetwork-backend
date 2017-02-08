@@ -38,7 +38,7 @@ module.exports = function(app,passport) {
  * @apiName getLike
  * @apiGroup Like
  *
- * @apiParam {Integer} id id de l'like à récupérer.
+ * @apiParam {String} id id de l'like à récupérer.
  *
  * @apiUse ReturnLike
  *
@@ -76,7 +76,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du like à modifier.
+ * @apiParam {String} id id du like à modifier.
  * @apiUse PostLike
  *
  * @apiUse ReturnLike
@@ -92,7 +92,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id de l'like à supprimer.
+ * @apiParam {String} id id de l'like à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *

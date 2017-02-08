@@ -1,5 +1,52 @@
 module.exports = function(app,passport) {
     var videoController = require('../controllers/VideoController.js');
+
+    /**
+     * @api {get} /video getVideoByYoutubeId
+     * @apiName getVideoByYoutubeId
+     * @apiGroup Video
+     *
+     *
+     * @apiSuccess Array[videos] videos Retourne toutes les videos youtube associées à l'id
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     [
+     {
+       "_id": "50987e094d99abgtgtb206c71",
+       "updatedAt": "2017-01-22T18:58:40.688Z",
+       "createdAt": "2017-01-22T18:58:40.688Z",
+       "name": "Nom de la vidéo",
+       "url": "azrezr",
+       "thunbmail": "youtube.fr/img.jpg",
+       "author": "58808dac2b70a556a40c98b0",
+       "__v": 0,
+       "likes": [],
+       "annotations": [],
+       "comments": []
+     },
+     {
+       "_id": "588500e094d99ab84b206c71",
+       "updatedAt": "2017-01-22T18:58:40.688Z",
+       "createdAt": "2017-01-22T18:58:40.688Z",
+       "name": "Nom de la vidéo",
+       "url": "azrezr",
+       "thunbmail": "youtube.fr/img.jpg",
+       "author": "58808dac2b70a556a40c98b0",
+       "__v": 0,
+       "likes": [],
+       "annotations": [],
+       "comments": []
+     }
+     ]
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *
+     */
+    app.get('/video/youtube/:youtube',  videoController.findByIdYoutube);
+
+
     require('./base/index')(app,passport,"Video");
 };
 
@@ -8,8 +55,6 @@ module.exports = function(app,passport) {
  * @apiName getAllVideo
  * @apiGroup Video
  *
- *
- * @apiParam {Integer} id id du match à récupérer.
  *
  * @apiSuccess Array[videos] videos Retourne toutes les videos
  *
@@ -55,7 +100,7 @@ module.exports = function(app,passport) {
  * @apiGroup Video
  *
  *
- * @apiParam {Integer} id id du video à récupérer.
+ * @apiParam {String} id id du video à récupérer.
  *
  * @apiUse ReturnVideo
  *
@@ -86,7 +131,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du video à modifier.
+ * @apiParam {String} id id du video à modifier.
  * @apiUse PostVideo
  *
  * @apiUse ReturnVideo
@@ -102,7 +147,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id du video à supprimer.
+ * @apiParam {String} id id du video à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *
@@ -126,7 +171,8 @@ module.exports = function(app,passport) {
  * @apiSuccess {Datetime} updatedAt The video date updated.
  * @apiSuccess {Datetime} createdAt The video date created.
  * @apiSuccess {String} name The video's name.
- * @apiSuccess {String} url The video's url.
+ * @apiSuccess {Boolean} privacy The video's visibility.
+ * @apiSuccess {String} youtube The youtube video's id.
  * @apiSuccess {String} thunbmail The video's thunbmail.
  * @apiSuccess {String} author The video's author.
  * @apiSuccess {Array[Comment]} comments The video's comments.
@@ -141,7 +187,8 @@ module.exports = function(app,passport) {
       "updatedAt": "2017-01-22T23:12:20.629Z",
       "createdAt": "2017-01-22T18:58:40.688Z",
       "name": "Nom de la vidéo",
-      "url": "youtube.fr?w=azrezr",
+      "youtube": "azrezr",
+      "privacy": false,
       "thunbmail": "youtube.fr/img.jpg",
       "author": {
         "_id": "58808dac2b70a556a40c98b0",
@@ -179,13 +226,15 @@ module.exports = function(app,passport) {
  * @apiDefine PostVideo
 
  * @apiParam {String} name The video's name.
- * @apiParam {String} url The video's url.
+ * @apiParam {String} youtube The youtube video's id.
+ * @apiSuccess {Boolean} privacy The video's visibility.
  * @apiParam {String} [thunbmail] The video's thunbmail.
  *
  * @apiParamExample {json} Request-Example:
  {
 	"name":"Nom de la vidéo",
-    "url":"youtube.fr?w=azrezr",
-  	"thunbmail":"youtube.fr/img.jpg"
+    "youtube":"azrezr",
+  	"thunbmail":"youtube.fr/img.jpg",
+  	"privacy": false
 }
  */

@@ -58,7 +58,7 @@ module.exports = function(app,passport) {
  * @apiGroup Annotation
  *
  *
- * @apiParam {Integer} id id de l'annotation à récupérer.
+ * @apiParam {String} id id de l'annotation à récupérer.
  *
  * @apiUse ReturnAnnotation
  *
@@ -90,7 +90,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id de l'Annotation à modifier.
+ * @apiParam {String} id id de l'Annotation à modifier.
  * @apiUse PostAnnotation
  *
  * @apiUse ReturnAnnotation
@@ -106,7 +106,7 @@ module.exports = function(app,passport) {
  *
  * @apiPermission authentificated
  *
- * @apiParam {Integer} id id de l'annotation à supprimer.
+ * @apiParam {String} id id de l'annotation à supprimer.
  *
  * @apiSuccess {String} message Retourne un message.
  *
@@ -125,6 +125,7 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine ReturnAnnotation
  * @apiSuccess {String} _id The annotation's id.
+ * @apiSuccess {String} video The annotation's video id.
  * @apiSuccess {Datetime} updatedAt The annotation updated date.
  * @apiSuccess {Datetime} createdAt The annotation created date.
  * @apiSuccess {Number} time_start The annotation s time start.
@@ -157,6 +158,7 @@ module.exports = function(app,passport) {
 /**
  * @apiDefine PostAnnotation
 
+ * @apiParam {String} video Annotation ' s video id
  * @apiParam {Number} time_start annotation s time start.
  * @apiParam {Number} time_end annotation s time end.
  * @apiParam {String} text Annotation s text
@@ -165,6 +167,7 @@ module.exports = function(app,passport) {
  *
  * @apiParamExample {json} Request-Example:
  {
+       "video":"5885056e891ae1bc0b31e98c",
        "time_start":12,
        "time_end":14,
        "text":"annotation",
