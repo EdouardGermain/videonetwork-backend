@@ -2,10 +2,11 @@ module.exports = function(app,passport) {
     var videoController = require('../controllers/VideoController.js');
 
     /**
-     * @api {get} /video getVideoByYoutubeId
+     * @api {get} /video/youtube/:idyoutube getVideoByYoutubeId
      * @apiName getVideoByYoutubeId
      * @apiGroup Video
      *
+     * @apiParam {String} idyoutube id youtubbe des videos à récupérer.
      *
      * @apiSuccess Array[videos] videos Retourne toutes les videos youtube associées à l'id
      *
