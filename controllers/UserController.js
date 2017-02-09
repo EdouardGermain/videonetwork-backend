@@ -1,5 +1,6 @@
 var Object = require('../models/User.js');
 var bCrypt = require('bcrypt-nodejs');
+var fs = require('fs');
 
 var createHash = function(password){
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
@@ -41,5 +42,76 @@ module.exports.update =  function(req,res) {
             }
         });
     }else return res.send(401, {message: "Unauthorized"});
+
+};
+
+module.exports.uploadAvatar = function(req, res) {
+    if (req.file) {
+        console.dir(req.file);
+        Object.Model.update({_id: req.user}, {avatar:req.file.path}, function (err) {
+            if (err) {
+                res.send(400, {message: err});
+            } else {
+                Object.Model.findById(req.param('id'),function (err, result) {
+                    if (err) {
+                        res.send(400, { message: err });
+                    }else{
+                        res.json(result);
+                    }
+                });
+            }
+        });
+
+    }else res.end('Missing file');
+};
+
+module.exports.getAvatar = function(req, res) {
+    Object.Model.findById(req.param('id'), function (err, result) {
+        if (err) {
+            res.send(500, {message: err});
+        }
+        else if (!result) {
+            res.send(404, {message: "not found"});
+        }
+        else {
+
+            fs.createReadStream(result.avatar).pipe(res);
+        }
+    });
+};
+
+module.exports.uploadBackground = function(req, res) {
+    if (req.file) {
+        console.dir(req.file);
+        Object.Model.update({_id: req.user}, {background:req.file.path}, function (err) {
+            if (err) {
+                res.send(400, {message: err});
+            } else {
+                Object.Model.findById(req.param('id'),function (err, result) {
+                    if (err) {
+                        res.send(400, { message: err });
+                    }else{
+                        res.json(result);
+                    }
+                });
+            }
+        });
+
+    }else res.end('Missing file');
+};
+
+module.exports.getBackground = function(req, res) {
+    Object.Model.findById(req.param('id'),function (err, result) {
+        if (err) {
+            res.send(500, { message: err });
+        }
+        else if(!result){
+            res.send(404, { message: "not found" });
+        }
+        else{
+
+            fs.createReadStream(result.background).pipe(res);
+        }
+    });
 
 };

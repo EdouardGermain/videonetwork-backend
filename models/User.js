@@ -19,7 +19,9 @@ var ObjectSchema = mongoose.Schema(
         website : String,
         description : String,
         youtube_chanel : String,
-        country : String
+        country : String,
+        avatar:String,
+        background:String
 
 
     },

@@ -19,7 +19,8 @@ module.exports = function(app,passport) {
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Set-Cookie, Content-Type, Accept");
         next();
-    }
+    };
+
     app.use('/apidoc', express.static('apidoc'));
     app.use(bodyParser.json());
     app.use(allowCrossDomain);
@@ -35,7 +36,7 @@ module.exports = function(app,passport) {
             maxAge: 3600000
         },
         store: new MongoStore({
-            url: 'mongodb://localhost/videonetwork-sessions',
+            url: 'mongodb://edouardg.fr/videonetwork-sessions',
             autoRemove: 'interval',
             autoRemoveInterval: 60
         })

@@ -5,19 +5,21 @@ module.exports = function(app,passport) {
     var authController = require('../controllers/AuthController.js')(passport);
 
     var multer  = require('multer');
-    var upload = multer({ dest: 'uploads/' });
-
-
-
-
-    app.post('/upload', upload.single('avatar'), function(req, res) {
-        if (req.file) {
-            console.dir(req.file);
-            return res.end('Thank you for the file');
+    var upload = multer(
+        {
+            dest: './tmp/'
         }
-        res.end('Missing file');
-    });
+    );
 
+
+
+    app.post('/avatar', authController.isAuthenticated,  upload.single('avatar'), userController.uploadAvatar);
+
+    app.get('/avatar/:id',userController.getAvatar);
+
+    app.post('/background', authController.isAuthenticated,  upload.single('avatar'), userController.uploadBackground);
+
+    app.get('/background/:id',userController.getBackground);
 
     /**
     * @api {get} /user/name/:name getUserByName
