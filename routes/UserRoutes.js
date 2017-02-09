@@ -17,7 +17,7 @@ module.exports = function(app,passport) {
 
     app.get('/avatar/:id',userController.getAvatar);
 
-    app.post('/background', authController.isAuthenticated,  upload.single('avatar'), userController.uploadBackground);
+    app.post('/background', authController.isAuthenticated,  upload.single('background'), userController.uploadBackground);
 
     app.get('/background/:id',userController.getBackground);
 
