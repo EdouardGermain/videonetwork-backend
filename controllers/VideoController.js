@@ -81,7 +81,7 @@ module.exports.findById = function(req,res)
 
     module.exports.findByIdYoutube = function(req,res)
     {
-        Object.Model.find({youtube:req.param('youtube')}, function (err, result) {
+        Object.Model.find({youtube:req.param('youtube'),privacy:false}, function (err, result) {
             if (err) {
                 res.send(500, { message: err });
             }else{
