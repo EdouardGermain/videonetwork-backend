@@ -71,7 +71,7 @@ module.exports.findById = function(req,res)
                     to_add.thunbmail = video.thunbmail;
                     to_add.author = video.author;
                     to_add.like = video.likes.length;
-
+                    to_add.comment = video.comments.length;
                     videos.push(to_add);
                 });
                 res.json(videos);
@@ -95,6 +95,7 @@ module.exports.findById = function(req,res)
                     to_add.youtube = video.youtube;
                     to_add.thunbmail = video.thunbmail;
                     to_add.author = video.author;
+                    to_add.comment = video.comments.length;
                     to_add.like = video.likes.length;
 
                     videos.push(to_add);
