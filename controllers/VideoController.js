@@ -44,12 +44,40 @@ module.exports.findById = function(req,res)
             res.send(400, { message: err });
         }else if (!result){
             res.send(404, { message: "Not found" });
+        }else if(result.privacy && result.author != req.user){
+            res.send(401, { message: "Unauthorized" });
         }
         else{
+
             res.json(result);
         }
     });
 };
+
+    module.exports.videoCurrentUser = function(req,res)
+    {
+        Object.Model.find({author:req.user}, function (err, result) {
+            if (err) {
+                res.send(500, { message: err });
+            }else{
+                var videos = [];
+                result.forEach(function (video, index) {
+                    var to_add = {};
+                    to_add._id = video._id;
+                    to_add.updatedAt = video.updatedAt;
+                    to_add.createdAt = video.createdAt;
+                    to_add.name = video.name;
+                    to_add.youtube = video.youtube;
+                    to_add.thunbmail = video.thunbmail;
+                    to_add.author = video.author;
+                    to_add.like = video.likes.length;
+
+                    videos.push(to_add);
+                });
+                res.json(videos);
+            }
+        });
+    };
 
     module.exports.findByIdYoutube = function(req,res)
     {
@@ -57,7 +85,21 @@ module.exports.findById = function(req,res)
             if (err) {
                 res.send(500, { message: err });
             }else{
-                res.json(result);
+                var videos = [];
+                result.forEach(function (video, index) {
+                    var to_add = {};
+                    to_add._id = video._id;
+                    to_add.updatedAt = video.updatedAt;
+                    to_add.createdAt = video.createdAt;
+                    to_add.name = video.name;
+                    to_add.youtube = video.youtube;
+                    to_add.thunbmail = video.thunbmail;
+                    to_add.author = video.author;
+                    to_add.like = video.likes.length;
+
+                    videos.push(to_add);
+                });
+                res.json(videos);
             }
         });
 };
