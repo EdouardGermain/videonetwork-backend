@@ -3,6 +3,7 @@ module.exports = function(app,passport) {
     var authController = require('../controllers/AuthController.js')(passport);
 
     app.get('/user/me/video', authController.isAuthenticated, videoController.videoCurrentUser);
+    app.get('/user/:id/video', authController.isAuthenticated, videoController.videoByUserId);
 
     /**
      * @api {get} /video/youtube/:idyoutube getVideoByYoutubeId

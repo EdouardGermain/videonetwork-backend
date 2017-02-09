@@ -53,29 +53,53 @@ module.exports.findById = function(req,res)
 };
 
     module.exports.videoCurrentUser = function(req,res)
-    {
-        Object.Model.find({author:req.user}, function (err, result) {
-            if (err) {
-                res.send(500, { message: err });
-            }else{
-                var videos = [];
-                result.forEach(function (video, index) {
-                    var to_add = {};
-                    to_add._id = video._id;
-                    to_add.updatedAt = video.updatedAt;
-                    to_add.createdAt = video.createdAt;
-                    to_add.name = video.name;
-                    to_add.youtube = video.youtube;
-                    to_add.thunbmail = video.thunbmail;
-                    to_add.author = video.author;
-                    to_add.like = video.likes.length;
-                    to_add.comment = video.comments.length;
-                    videos.push(to_add);
-                });
-                res.json(videos);
-            }
-        });
-    };
+{
+    Object.Model.find({author:req.user}, function (err, result) {
+        if (err) {
+            res.send(500, { message: err });
+        }else{
+            var videos = [];
+            result.forEach(function (video, index) {
+                var to_add = {};
+                to_add._id = video._id;
+                to_add.updatedAt = video.updatedAt;
+                to_add.createdAt = video.createdAt;
+                to_add.name = video.name;
+                to_add.youtube = video.youtube;
+                to_add.thunbmail = video.thunbmail;
+                to_add.author = video.author;
+                to_add.like = video.likes.length;
+                to_add.comment = video.comments.length;
+                videos.push(to_add);
+            });
+            res.json(videos);
+        }
+    });
+};
+module.exports.videoByUserId = function(req,res)
+{
+    Object.Model.find({author:req.param('id'),privacy:false}, function (err, result) {
+        if (err) {
+            res.send(500, { message: err });
+        }else{
+            var videos = [];
+            result.forEach(function (video, index) {
+                var to_add = {};
+                to_add._id = video._id;
+                to_add.updatedAt = video.updatedAt;
+                to_add.createdAt = video.createdAt;
+                to_add.name = video.name;
+                to_add.youtube = video.youtube;
+                to_add.thunbmail = video.thunbmail;
+                to_add.author = video.author;
+                to_add.like = video.likes.length;
+                to_add.comment = video.comments.length;
+                videos.push(to_add);
+            });
+            res.json(videos);
+        }
+    });
+};
 
     module.exports.findByIdYoutube = function(req,res)
     {
