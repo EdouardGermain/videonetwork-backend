@@ -4,6 +4,21 @@ module.exports = function(app,passport) {
     var userController = require('../controllers/UserController.js');
     var authController = require('../controllers/AuthController.js')(passport);
 
+    var multer  = require('multer');
+    var upload = multer({ dest: 'uploads/' });
+
+
+
+
+    app.post('/upload', upload.single('avatar'), function(req, res) {
+        if (req.file) {
+            console.dir(req.file);
+            return res.end('Thank you for the file');
+        }
+        res.end('Missing file');
+    });
+
+
     /**
     * @api {get} /user/name/:name getUserByName
     * @apiName getUserByName

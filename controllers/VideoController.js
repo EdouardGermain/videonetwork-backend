@@ -65,6 +65,7 @@ module.exports.findById = function(req,res)
                 to_add.updatedAt = video.updatedAt;
                 to_add.createdAt = video.createdAt;
                 to_add.name = video.name;
+                to_add.privacy = video.privacy;
                 to_add.youtube = video.youtube;
                 to_add.thunbmail = video.thunbmail;
                 to_add.author = video.author;
