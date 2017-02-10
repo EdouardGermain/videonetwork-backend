@@ -44,7 +44,7 @@ module.exports.update =  function(req,res) {
     }else return res.send(401, {message: "Unauthorized"});
 
 };
-
+/*
 module.exports.uploadAvatar = function(req, res) {
     if (req.file) {
         console.dir(req.file);
@@ -114,4 +114,17 @@ module.exports.getBackground = function(req, res) {
         }
     });
 
+};
+*/
+
+module.exports.uploadPhoto = function(req, res) {
+    console.log(req.file);
+    if (req.file) {
+        res.send(200,{url:'https://node.edouardg.fr/photo/'+req.file.filename});
+
+    }else res.send(400,{message:'Missing file'});
+};
+
+module.exports.getPhoto = function(req, res) {
+            fs.createReadStream('./tmp/'+req.param('filename')).pipe(res);
 };

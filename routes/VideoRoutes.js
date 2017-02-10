@@ -2,7 +2,89 @@ module.exports = function(app,passport) {
     var videoController = require('../controllers/VideoController.js');
     var authController = require('../controllers/AuthController.js')(passport);
 
+
+    /**
+     * @api {get} /user/me/video getMyVideo
+     * @apiName getMyVideo
+     * @apiGroup Video
+     *
+     * @apiSuccess Array[videos] videos Retourne toutes les videos de l'utilisateur connecté.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [{
+    "_id": "589cd41e1f46b2288fe72ddb",
+    "updatedAt": "2017-02-09T20:42:06.727Z",
+    "createdAt": "2017-02-09T20:42:06.727Z",
+    "name": "Benjam - Bla Bla Bla  [Official music video] HD",
+    "privacy": false,
+    "youtube": "Faxq8ufTcNQ",
+    "thunbmail": "https://i.ytimg.com/vi/Faxq8ufTcNQ/mqdefault.jpg",
+    "author": "58988e485979a510347a7e1b",
+    "like": 0,
+    "comment": 0
+  },
+     {
+       "_id": "589cd4211f46b2288fe72ddc",
+       "updatedAt": "2017-02-09T20:42:09.398Z",
+       "createdAt": "2017-02-09T20:42:09.398Z",
+       "name": "El Micha - Bla Bla Bla ( Video Official )",
+       "privacy": false,
+       "youtube": "oy7QpGUjcI8",
+       "thunbmail": "https://i.ytimg.com/vi/oy7QpGUjcI8/mqdefault.jpg",
+       "author": "58988e485979a510347a7e1b",
+       "like": 0,
+       "comment": 0
+     }
+     ]
+     *
+     */
+
+
     app.get('/user/me/video', authController.isAuthenticated, videoController.videoCurrentUser);
+
+    /**
+     * @api {get} /user/:id/video getVideoByUserId
+     * @apiName getVideoByUserId
+     * @apiGroup Video
+     *
+     * @apiParam {String} id id de l'utilisateur dont on veut les vidéos.
+     *
+     * @apiSuccess Array[videos] videos Retourne toutes les videos d'un user
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [{
+    "_id": "589cd41e1f46b2288fe72ddb",
+    "updatedAt": "2017-02-09T20:42:06.727Z",
+    "createdAt": "2017-02-09T20:42:06.727Z",
+    "name": "Benjam - Bla Bla Bla  [Official music video] HD",
+    "privacy": false,
+    "youtube": "Faxq8ufTcNQ",
+    "thunbmail": "https://i.ytimg.com/vi/Faxq8ufTcNQ/mqdefault.jpg",
+    "author": "58988e485979a510347a7e1b",
+    "like": 0,
+    "comment": 0
+  },
+     {
+       "_id": "589cd4211f46b2288fe72ddc",
+       "updatedAt": "2017-02-09T20:42:09.398Z",
+       "createdAt": "2017-02-09T20:42:09.398Z",
+       "name": "El Micha - Bla Bla Bla ( Video Official )",
+       "privacy": false,
+       "youtube": "oy7QpGUjcI8",
+       "thunbmail": "https://i.ytimg.com/vi/oy7QpGUjcI8/mqdefault.jpg",
+       "author": "58988e485979a510347a7e1b",
+       "like": 0,
+       "comment": 0
+     }
+     ]
+     *
+     */
+
+
     app.get('/user/:id/video', authController.isAuthenticated, videoController.videoByUserId);
 
     /**
@@ -71,7 +153,7 @@ module.exports = function(app,passport) {
        "updatedAt": "2017-01-22T18:58:40.688Z",
        "createdAt": "2017-01-22T18:58:40.688Z",
        "name": "Nom de la vidéo",
-       "url": "youtube.fr?w=azrezr",
+       "youtube": "youtube.fr?w=azrezr",
        "thunbmail": "youtube.fr/img.jpg",
        "author": "58808dac2b70a556a40c98b0",
        "__v": 0,
@@ -84,7 +166,7 @@ module.exports = function(app,passport) {
        "updatedAt": "2017-01-22T18:58:40.688Z",
        "createdAt": "2017-01-22T18:58:40.688Z",
        "name": "Nom de la vidéo",
-       "url": "youtube.fr?w=azrezr",
+       "youtube": "youtube.fr?w=azrezr",
        "thunbmail": "youtube.fr/img.jpg",
        "author": "58808dac2b70a556a40c98b0",
        "__v": 0,
