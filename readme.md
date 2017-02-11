@@ -3,7 +3,7 @@ INTRODUCTION
 ***********
 
 Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
-Il suffit de copier/coller les trois templates suivants et de les compléter en fonction de nos besoins.
+Il suffit de copier/coller les trois templates (cf partie 3) ) et de les compléter en fonction de nos besoins.
 - Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
 - Inconvénients : plus long à mettre en place
 
@@ -11,9 +11,9 @@ Il suffit de copier/coller les trois templates suivants et de les compléter en 
 1) START APP
 ***********
 
-Lancer l'application : node app.js
+Lancer l'application : ```sh node app.js```
 <br/>
-Faire tourner en continue l'application  : forever start app.js (nécessite le paquet forever : npm install forever -g)
+Faire tourner en continue l'application  : ```sh forever start app.js``` (nécessite le paquet forever : npm install forever -g)
 ***********
 
 Répartition du travail (côté serveur):
@@ -95,26 +95,26 @@ module.exports = function(app,passport) {
     };
 ```
 ***********
-APIDOC
+4) APIDOC
 ***********
 
 Pour générer la documentation (nécessite apidoc : npm install apidoc -g):
-apidoc -i routes/ -o apidoc
+```sh apidoc -i routes/ -o apidoc```
 <br/><br/>
-URL : https://node.edouardg.fr/apidoc/
+Lien vers la documentation : https://node.edouardg.fr/apidoc/
 
 
 ***********
- TESTS
+5) TESTS
 ***********
-
-mocha tests/MainTest.js <br/>
-mocha tests/UserTest.js 
+Lancer les tests : <br/><br/>
+```sh mocha tests/MainTest.js``` <br/>
+```sh mocha tests/UserTest.js```
 
 
 ***********
- KILL NODE - if IntelliJ let it run after exit
+6) USEFULL CMD
 ***********
-
-ps -aef | grep 'node' <br/>
-kill pid
+ KILL NODE - if IntelliJ let it run after exit<br/>
+```sh ps -aef | grep 'node'``` <br/>
+```sh kill pid```
