@@ -5,7 +5,10 @@ Faire tourner en continue l'application  : forever start app.js (nécessite le p
 
 Répartition du travail (côté serveur):
 
-Nicolas Forget : tests unitaires, + travail côté Front
+Nicolas Forget : 
+- tests unitaires
+- travail côté Front
+
 Edouard Germain : 
 - mise en place du serveur minimal
 - refactoring avec des modules/requires
