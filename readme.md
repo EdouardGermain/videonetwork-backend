@@ -2,19 +2,15 @@
 INTRODUCTION
 ***********
 
+Fonctionnalités du serveur : 
+- gestion utilisateur (connexion , déconnexion, s'inscrire, supprimer son compte)
+- 
+
 Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
 Il suffit de copier/coller les trois templates (cf partie 3) ) et de les compléter en fonction de nos besoins.
+
 - Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
 - Inconvénients : plus long à mettre en place
-
-***********
-1) START APP
-***********
-
-Lancer l'application : ```sh node app.js```
-<br/>
-Faire tourner en continue l'application  : ```sh forever start app.js``` (nécessite le paquet forever : npm install forever -g)
-***********
 
 Répartition du travail (côté serveur):
 
@@ -28,6 +24,23 @@ Edouard Germain :
 - compléter le serveur
 - génération de la documentation
 - déploiement sur le VPS
+
+***********
+1) START APP
+***********
+
+Lancer l'application : ```sh node app.js```
+<br/>
+Faire tourner en continue l'application  : ```sh forever start app.js``` 
+<br/>(nécessite le paquet forever : ```sh npm install forever -g```)
+***********
+Liens vers l'API :
+API REST /Annotation : https://node.edouardg.fr/Annotation
+API REST /Comment : https://node.edouardg.fr/Comment
+API REST /Like : https://node.edouardg.fr/Like
+API REST /Playlist : https://node.edouardg.fr/Playlist
+API REST /User : https://node.edouardg.fr/User
+API REST /Video : https://node.edouardg.fr/Video
 
 ***********
 2) MODULES
@@ -71,13 +84,12 @@ Template d'un modèle
 
     exports.Schema = ObjectSchema;
 
-    exports.Model = mongoose.model('Comments', ObjectSchema);
+    exports.Model = mongoose.model('to_replace', ObjectSchema);
 ```
 Template d'un controleur 
 
 ```js
-    var Object = require('../models/Annotation.js');
-    var Video = require('../models/Video.js');
+    var Object = require('../models/to_replace.js');
 
     module.exports = require('./base/index.js')(Object);
 
@@ -88,8 +100,8 @@ Template des routes
 
 ```js
 module.exports = function(app,passport) {
-        var 'Objet'Controller = require('../controllers/'Objet'Controller.js');
-        require('./base/index')(app,passport,"'Objet'");
+        var to_replaceController = require('../controllers/to_replaceController.js');
+        require('./base/index')(app,passport,"to_replace");
     
         /* AJOUTER DES ROUTES ICI */
     };
@@ -98,7 +110,7 @@ module.exports = function(app,passport) {
 4) APIDOC
 ***********
 
-Pour générer la documentation (nécessite apidoc : npm install apidoc -g):
+Pour générer la documentation (nécessite apidoc : ```sh npm install apidoc -g```):<br/>
 ```sh apidoc -i routes/ -o apidoc```
 <br/><br/>
 Lien vers la documentation : https://node.edouardg.fr/apidoc/
