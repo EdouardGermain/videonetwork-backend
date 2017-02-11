@@ -19,6 +19,7 @@ module.exports.add = function(req,res) {
 
 module.exports.findById = function(req,res)
 {
+    if(req.user == null) req.user ="aaa";
     Object.Model.findById(req.param('id'))
         .populate('author')
         .populate({
@@ -42,10 +43,15 @@ module.exports.findById = function(req,res)
         .then( function (result) {
         if (!result){
             res.send(404, { message: "Not found" });
-        }else if(result.privacy && result.author != req.user.id){
+        }else if(result.privacy && !(result.author.username == req.user.username)){
 
-            res.send(401, { message: "Unauthorized" });
-        }
+                console.log("*"+result.author._id+"*");
+                console.log("*"+req.user._id+"*");
+                console.log(result.author === req.user._id);
+                res.send(401, { message: "Unauthorized" });
+
+            }
+
         else{
 
             res.json(result);

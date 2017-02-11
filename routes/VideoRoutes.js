@@ -85,7 +85,7 @@ module.exports = function(app,passport) {
      */
 
 
-    app.get('/user/:id/video', authController.isAuthenticated, videoController.videoByUserId);
+    app.get('/user/:id/video',  videoController.videoByUserId);
 
     /**
      * @api {get} /video/youtube/:idyoutube getVideoByYoutubeId
