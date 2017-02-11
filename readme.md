@@ -1,5 +1,14 @@
 ***********
-START APP
+INTRODUCTION
+***********
+
+Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
+Il suffit de copier/coller les trois templates suivants et de les compléter en fonction de nos besoins.
+- Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
+- Inconvénients : plus long à mettre en place
+
+***********
+1) START APP
 ***********
 
 Lancer l'application : node app.js
@@ -21,7 +30,7 @@ Edouard Germain :
 - déploiement sur le VPS
 
 ***********
-MODULES
+2) MODULES
 ***********
 
 Nous avons utilisé pour la partie serveur les modules suivants :
@@ -42,15 +51,13 @@ Pour les tests nous avons utilisé :
 - supertest.
 
 
-Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
-Il suffit de copier/coller les trois templates suivants et de les compléter en fonction de nos besoins.
-- Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
-- Inconvénients : plus long à mettre en place
-
 ***********
-Template d'un modèle : 'Objet'.js
+3) TEMPLATES
 ***********
 
+Template d'un modèle
+
+```js
     var mongoose=require('mongoose');
 
     var ObjectSchema = mongoose.Schema({
@@ -65,29 +72,28 @@ Template d'un modèle : 'Objet'.js
     exports.Schema = ObjectSchema;
 
     exports.Model = mongoose.model('Comments', ObjectSchema);
+```
+Template d'un controleur 
 
-***********
-Template d'un controleur : 'Objet'Controller.js
-***********
-
+```js
     var Object = require('../models/Annotation.js');
     var Video = require('../models/Video.js');
 
     module.exports = require('./base/index.js')(Object);
 
-    AJOUTER/SURCHARGER des fonctionnalités ici 
+    /* AJOUTER/SURCHARGER des fonctionnalités ici */
+```
 
-***********
-Template  route : 'Objet'Routes.js
-***********
+Template des routes 
 
-    module.exports = function(app,passport) {
+```js
+module.exports = function(app,passport) {
         var 'Objet'Controller = require('../controllers/'Objet'Controller.js');
         require('./base/index')(app,passport,"'Objet'");
     
         /* AJOUTER DES ROUTES ICI */
     };
-
+```
 ***********
 APIDOC
 ***********
