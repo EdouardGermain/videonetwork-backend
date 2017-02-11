@@ -1,17 +1,27 @@
 ***********
-INTRODUCTION
+VIDEONETWORK-BACKEND
 ***********
 
-Fonctionnalités du serveur : 
-- gestion utilisateur (connexion , déconnexion, s'inscrire, supprimer son compte)
-- 
+L'application web a été développé en Javascript , avec Node JS dans le cadre du cours "Programable Web". 
+Pour la persistence des données et des sessions, nous avons utilisés MongoDB même s'il aurait été peut-être
+plus pertinent d'utiliser une BDD NoSQL key-value comme Redis pour gérer les sessions.<br/>
+Notre serveur permet de gérer :
+utilisateur (connexion , déconnexion, s'inscrire, supprimer son compte), photo , video, playlist, annotation, commentaire, likes..
+En somme, tous les modèles dont a besoin un bon "videonetwork".
+
 
 Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
 Il suffit de copier/coller les trois templates (cf partie 3) ) et de les compléter en fonction de nos besoins.
 
-- Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
-- Inconvénients : plus long à mettre en place
+Avantages : 
+- gain en productivité sur le long terme
+- hautement maintenable
+- lisibilité du code
 
+Inconvénients : 
+- plus long à mettre en place
+
+<br/>
 Répartition du travail (côté serveur):
 
 Nicolas Forget : 
