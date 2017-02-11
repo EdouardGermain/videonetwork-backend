@@ -1,3 +1,8 @@
+/**
+ * Author : Edouard Germain
+ *
+ */
+
 var mongoose=require('mongoose');
 
 

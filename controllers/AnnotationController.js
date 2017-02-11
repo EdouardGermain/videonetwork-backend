@@ -1,3 +1,11 @@
+/**
+ * Author : Edouard Germain
+ *
+ * import base/index.js + override add method
+ *
+ */
+
+
 var Object = require('../models/Annotation.js');
 var Video = require('../models/Video.js');
 

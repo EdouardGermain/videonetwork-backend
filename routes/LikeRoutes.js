@@ -1,3 +1,7 @@
+/**
+ * Author : Edouard Germain
+ */
+
 module.exports = function(app,passport) {
     var LikeController = require('../controllers/LikeController.js');
     require('./base/index')(app,passport,"Like");

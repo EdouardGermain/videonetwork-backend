@@ -1,4 +1,8 @@
-
+/**
+ * Author : Edouard Germain
+ *
+ * Module multer to handle multipart request - the whole code which used multer is provided by multer quickstart
+ */
 
 module.exports = function(app,passport) {
     var userController = require('../controllers/UserController.js');

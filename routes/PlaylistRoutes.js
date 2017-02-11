@@ -1,3 +1,7 @@
+/**
+ * Author : Edouard Germain
+ */
+
 module.exports = function(app,passport) {
     var playlistController = require('../controllers/PlaylistController.js');
     var authController = require('../controllers/AuthController')(passport);

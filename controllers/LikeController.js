@@ -1,3 +1,11 @@
+/**
+ * Author : Edouard Germain
+ *
+ * import base/index.js + override add method
+ *
+ */
+
+
 var Object = require('../models/Like.js');
 var Video = require('../models/Video.js');
 

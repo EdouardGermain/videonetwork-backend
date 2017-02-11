@@ -1,3 +1,7 @@
+/**
+ * Author : Edouard Germain
+ */
+
 module.exports = function(app,passport) {
     var commentController = require('../controllers/CommentController.js');
     require('./base/index')(app,passport,"Comment");

@@ -1,3 +1,10 @@
+/**
+ * Author : Edouard Germain
+ *
+ * authentification's functions : loggin, signup, isauthenticated, loggout, getCurrentUser
+ *
+ */
+
 module.exports = function(passport) {
     var module=[];
 

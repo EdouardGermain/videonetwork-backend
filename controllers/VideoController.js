@@ -1,3 +1,15 @@
+/**
+ * Author : Edouard Germain
+ *
+ * import base/index.js
+ * + override :
+ *  - add : to force the author to be the user logged
+ *  - findbyid : to populate comments, author, likes, etc..
+ * + adding some specific search
+ *
+ */
+
+
 var Object = require('../models/Video.js');
 require('../models/Comment.js');
 require('../models/User.js');

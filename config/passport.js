@@ -1,3 +1,9 @@
+/**
+ *  Passport Tutoriel adapted for our application by Edouard Germain
+ *
+ *
+ */
+
 var User = require('../models/User.js');
 var bCrypt = require('bcrypt-nodejs');
 var LocalStrategy   = require('passport-local').Strategy;

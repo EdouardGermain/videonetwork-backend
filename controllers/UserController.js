@@ -1,3 +1,13 @@
+/**
+ * Author : Edouard Germain
+ *
+ * import base/index.js + override update because we need to hash the password
+ * some functions to upload file - only the 2 last are used
+ *
+ */
+
+
+
 var Object = require('../models/User.js');
 var bCrypt = require('bcrypt-nodejs');
 var fs = require('fs');

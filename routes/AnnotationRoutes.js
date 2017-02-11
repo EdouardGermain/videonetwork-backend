@@ -1,3 +1,8 @@
+/**
+ * Author : Edouard Germain
+ */
+
+
 module.exports = function(app,passport) {
     //var annotationController = require('../controllers/AnnotationController.js');
 

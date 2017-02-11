@@ -1,9 +1,12 @@
-var fs = require('fs');
+/**
+ * Author : Edouard Germain
+ *
+ * do not modify to add specific routes
+ * use the ' objet ' routes.js
+ *
+ * API routes ( GET , GET ALL, UPDATE, POST, DELETE)
+ */
 
-/*
- * do not modify
- * use "object"Routes.js to add some routes
- * */
 
 module.exports = function(app,passport,object) {
     var authController = require('../../controllers/AuthController')(passport);
@@ -15,7 +18,7 @@ module.exports = function(app,passport,object) {
     app.get(path+'/:id', objectDAO.findById);
     app.post(path, authController.isAuthenticated,objectDAO.add);
     app.put(path+'/:id', authController.isAuthenticated, objectDAO.update);
-    app.delete(path+'/:id', objectDAO.remove);
+    app.delete(path+'/:id', authController.isAuthenticated, objectDAO.remove);
 
     console.log("API REST "+path+" : http://localhost:8085"+path );
 };

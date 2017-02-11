@@ -1,3 +1,12 @@
+/**
+ * Author : Edouard Germain
+ *
+ * Playlist not usued in front..
+ *
+ */
+
+
+
 var Object = require('../models/Playlist.js');
 
 module.exports = require('./base/index.js')(Object);

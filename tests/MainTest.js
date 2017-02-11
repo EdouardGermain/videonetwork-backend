@@ -1,3 +1,7 @@
+/**
+ * Author : Nicolas Forget
+ */
+
 var supertest = require("supertest");
 var should = require("should");
 

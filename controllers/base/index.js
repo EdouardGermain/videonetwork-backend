@@ -1,7 +1,12 @@
-/*
- * do not modify
- * use "object"DAO.js instead
- * */
+/**
+ * Author : Edouard Germain
+ *
+ * FindAll, FindById, Create*, Update*, Delete* (* you need to be logged for these actions
+ *
+ * Do not modify, use objects controllers instead and override / add functions.
+ *
+ */
+
 
 module.exports = function (Object){
     var module = {};

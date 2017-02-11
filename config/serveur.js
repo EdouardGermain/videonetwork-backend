@@ -1,3 +1,15 @@
+/**
+ * Author : Edouard Germain
+ *
+ * Configuration of the server
+ *
+ * Allow CORS from multi domaine
+ * Define the folder of the documentation
+ * Configure sessions/cookies
+ *
+ */
+
+
 var expressSession = require('express-session');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -8,7 +20,7 @@ module.exports = function(app,passport) {
 
 
 
-    var allowCrossDomain = function(req, res, next) {
+    var allowCrossDomain = function(req, res, next) { // had to search on google to find a way to allow multi origin
 
         var allowedOrigins = ['http://localhost', 'http://localhost:8080', 'http://127.0.0.1:8080', 'http://127.0.0.1'];
         var origin = req.headers.origin;

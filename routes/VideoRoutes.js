@@ -1,3 +1,7 @@
+/**
+ * Author : Edouard Germain
+ */
+
 module.exports = function(app,passport) {
     var videoController = require('../controllers/VideoController.js');
     var authController = require('../controllers/AuthController.js')(passport);
