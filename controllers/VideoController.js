@@ -42,7 +42,8 @@ module.exports.findById = function(req,res)
         .then( function (result) {
         if (!result){
             res.send(404, { message: "Not found" });
-        }else if(result.privacy && result.author != req.user){
+        }else if(result.privacy && result.author != req.user.id){
+
             res.send(401, { message: "Unauthorized" });
         }
         else{

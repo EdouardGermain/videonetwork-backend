@@ -58,6 +58,20 @@ module.exports = function (Object){
             });
     };
     module.remove =function(req,res) {
+        if(req.user.isAdmin==true){
+
+                Object.Model.remove( req.param('id'), function (err, modifed) {
+                    if (err) {
+                        res.send(400, {message: err});
+                    }
+                    else {
+                        res.send(200,{ message: "removed" });
+                    }
+                });
+
+        }
+        else
+        {
             Object.Model.remove({$or: [
                 {$and : [ {author : req.user} , {'_id': req.param('id')}]},
                 { $and : [ {'_id': req.user._id} , {'_id': req.param('id')}]}
@@ -70,6 +84,8 @@ module.exports = function (Object){
                     res.send(200,{ message: "removed" });
                 }
             });
+        }
+
     };
     return module;
 

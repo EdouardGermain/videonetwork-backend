@@ -16,6 +16,7 @@ var ObjectSchema = mongoose.Schema(
             required: true,
             select: false
         },
+        isAdmin:Boolean,
         website : String,
         description : String,
         youtube_chanel : String,
