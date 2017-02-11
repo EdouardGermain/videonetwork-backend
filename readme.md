@@ -1,5 +1,9 @@
-Lancer l'application : node app.js
 ***********
+START APP
+***********
+
+Lancer l'application : node app.js
+<br/>
 Faire tourner en continue l'application  : forever start app.js (nécessite le paquet forever : npm install forever -g)
 ***********
 
@@ -40,8 +44,8 @@ Pour les tests nous avons utilisé :
 
 Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
 Il suffit de copier/coller les trois templates suivants et de les compléter en fonction de nos besoins.
-Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
-Inconvénients : plus long à mettre en place
+- Avantages : gain en productivité sur le long terme, hautement maintenable, lisibilité du code
+- Inconvénients : plus long à mettre en place
 
 ***********
 Template d'un modèle : 'Objet'.js
@@ -90,15 +94,15 @@ APIDOC
 
 Pour générer la documentation (nécessite apidoc : npm install apidoc -g):
 apidoc -i routes/ -o apidoc
-***********
-disponible ici : https://node.edouardg.fr/apidoc/
+<br/><br/>
+URL : https://node.edouardg.fr/apidoc/
 
 
 ***********
  TESTS
 ***********
 
-mocha tests/MainTest.js 
+mocha tests/MainTest.js <br/>
 mocha tests/UserTest.js 
 
 
@@ -106,5 +110,5 @@ mocha tests/UserTest.js
  KILL NODE - if IntelliJ let it run after exit
 ***********
 
-ps -aef | grep 'node' 
+ps -aef | grep 'node' <br/>
 kill pid
