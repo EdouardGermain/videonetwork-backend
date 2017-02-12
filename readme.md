@@ -4,10 +4,10 @@ VIDEONETWORK-BACKEND
 
 L'application web a été développé en Javascript , avec Node JS dans le cadre du cours "Programable Web". 
 Pour la persistance des données et des sessions, nous avons utilisés MongoDB même s'il aurait été peut-être
-plus pertinent d'utiliser une BDD NoSQL key-value comme Redis pour gérer les sessions.<br/>
+plus pertinent d'utiliser une BDD NoSQL key-value comme Redis pour stocker les sessions.<br/>
 Notre serveur permet de gérer :
 utilisateur (connexion , déconnexion, s'inscrire, supprimer son compte), photo (upload/récupération), video (S/CRUD), playlist (CRUD), annotation (CRUD), commentaire (CRUD), likes (CRUD)..
-En somme, toutes les fonctionnalités dont a besoin un bon "videonetwork".
+<br/>En somme, toutes les fonctionnalités dont a besoin un bon "videonetwork".
 
 
 Le serveur a été implémenté de façon à avoir un "framework fait maison" réutilisable pour d'autres projets. 
@@ -41,10 +41,10 @@ Edouard Germain :
 1) START APP
 ***********
 
-Lancer l'application : ```sh node app.js```
+Lancer l'application : ```node app.js```
 <br/>
-Faire tourner en continue l'application  : ```sh forever start app.js``` 
-<br/>(nécessite le paquet forever : ```sh npm install forever -g```)
+Faire tourner en continue l'application  : ```forever start app.js``` 
+<br/>(nécessite le paquet forever : ```npm install forever -g```)
 ***********
 Liens vers l'API :<br/>
 API REST /Annotation : https://node.edouardg.fr/Annotation<br/>
@@ -122,8 +122,8 @@ module.exports = function(app,passport) {
 4) APIDOC
 ***********
 
-Pour générer la documentation (nécessite apidoc : ```sh npm install apidoc -g```):<br/>
-```sh apidoc -i routes/ -o apidoc```
+Pour générer la documentation (nécessite apidoc : ```npm install apidoc -g```):<br/>
+```apidoc -i routes/ -o apidoc```
 <br/><br/>
 Lien vers la documentation : https://node.edouardg.fr/apidoc/
 
@@ -132,13 +132,13 @@ Lien vers la documentation : https://node.edouardg.fr/apidoc/
 5) TESTS
 ***********
 Lancer les tests : <br/><br/>
-```sh mocha tests/MainTest.js``` <br/>
-```sh mocha tests/UserTest.js```
+```mocha tests/MainTest.js``` <br/>
+```mocha tests/UserTest.js```
 
 
 ***********
 6) USEFULL CMD
 ***********
  KILL NODE - if IntelliJ let it run after exit<br/>
-```sh ps -aef | grep 'node'``` <br/>
-```sh kill pid```
+```ps -aef | grep 'node'``` <br/>
+```kill pid```
