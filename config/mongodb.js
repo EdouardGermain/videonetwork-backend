@@ -13,7 +13,7 @@ const CA = FS.readFileSync(__dirname + '/certificate/mongodb.pem');
 
 module.exports = function() {
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb://edouardg.fr:27017/videonetwork',
+    mongoose.connect('mongodb://edouardg.fr:27017/videonetwork?ssl=true',
         {
             sslValidate: true,
             sslCA: CA,
