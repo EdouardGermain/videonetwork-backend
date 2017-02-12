@@ -46,13 +46,13 @@ Lancer l'application : ```sh node app.js```
 Faire tourner en continue l'application  : ```sh forever start app.js``` 
 <br/>(nécessite le paquet forever : ```sh npm install forever -g```)
 ***********
-Liens vers l'API :
-API REST /Annotation : https://node.edouardg.fr/Annotation
-API REST /Comment : https://node.edouardg.fr/Comment
-API REST /Like : https://node.edouardg.fr/Like
-API REST /Playlist : https://node.edouardg.fr/Playlist
-API REST /User : https://node.edouardg.fr/User
-API REST /Video : https://node.edouardg.fr/Video
+Liens vers l'API :<br/>
+API REST /Annotation : https://node.edouardg.fr/Annotation<br/>
+API REST /Comment : https://node.edouardg.fr/Comment<br/>
+API REST /Like : https://node.edouardg.fr/Like<br/>
+API REST /Playlist : https://node.edouardg.fr/Playlist<br/>
+API REST /User : https://node.edouardg.fr/User<br/>
+API REST /Video : https://node.edouardg.fr/Video<br/>
 
 ***********
 2) MODULES
