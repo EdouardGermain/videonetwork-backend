@@ -1,0 +1,61 @@
+<!--
+ Author : Edouard Germain
+ Example post-integration
+-->
+
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+  <ul>
+    <li><a href="getuser.html">voir l'utilisateur</a></li>
+    <li><a href="posttest.html">POST /video test</a></li>
+    <li><a href="sendfile.html">envoyer une photo</a></li>
+    <li><a href="canvas.html">dessiner dans un canvas</a></li>
+    <li><a href="test_client.html">login</a></li>
+    <li><a href="logout.html">logout</a></li>
+  </ul>
+
+  envoie video
+    </form>
+
+  <button onclick="myFunction()">Envoyer </button>
+
+  </body>
+  <script>
+      myFunction = function() {
+          var url = "https://node.edouardg.fr/video";
+          var http = new XMLHttpRequest();
+          var params = JSON.stringify({
+		  	  "name": "BlaBla - Ludovik",
+		      "url": "4H5Q0T90Qi4",
+			  "youtube":"ff",
+		      "thunbmail": "https://i.ytimg.com/vi/4H5Q0T90Qi4/mqdefault.jpg",
+		      "privacy": false
+          });
+
+
+          http.open("POST", url, true);
+          http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+          http.withCredentials = true;
+
+          http.onreadystatechange = function () {
+              if (http.readyState == 3 && http.status == 200) {
+                  console.log(http.responseText);
+              }else if (http.status == 400){
+                  console.log(http.responseText);
+              }
+          };
+          http.send(params);
+      };
+  </script>
+  
+</html>

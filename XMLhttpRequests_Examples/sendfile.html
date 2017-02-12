@@ -1,0 +1,33 @@
+<!--
+ Author : Edouard Germain
+ Example post-integration
+-->
+
+
+<form enctype="multipart/form-data">
+  Select an image to upload:
+  <input id="fileInput" type="file" name="photo"> 
+  <input value="Upload Image" onclick="myFunction()">
+</form>
+
+<ul>
+  <li><a href="getuser.html">voir l'utilisateur</a></li>
+  <li><a href="posttest.html">POST /video test</a></li>
+  <li><a href="sendfile.html">envoyer une photo</a></li>
+  <li><a href="canvas.html">dessiner dans un canvas</a></li>
+  <li><a href="test_client.html">login</a></li>
+  <li><a href="logout.html">logout</a></li>
+</ul>
+
+<script>
+myFunction = function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://node.edouardg.fr/photo');
+
+        var form = new FormData();
+        for(var i=0; i < fileInput.files.length; i++)
+            form.append('photo', fileInput.files[i]); 
+
+        xhr.send(form);
+    };
+</script>

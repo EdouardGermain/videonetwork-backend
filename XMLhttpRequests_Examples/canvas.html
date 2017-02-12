@@ -1,0 +1,80 @@
+<!--
+ Author : Edouard Germain
+ Example post-integration
+-->
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+  <ul>
+    <li><a href="getuser.html">voir l'utilisateur</a></li>
+    <li><a href="posttest.html">POST /video test</a></li>
+    <li><a href="sendfile.html">envoyer une photo</a></li>
+    <li><a href="canvas.html">dessiner dans un canvas</a></li>
+    <li><a href="test_client.html">login</a></li>
+    <li><a href="logout.html">logout</a></li>
+  </ul>
+
+  <canvas id="video" width="500" height="500"></canvas>
+
+    <form >
+
+        <SELECT id="shape" size="1">
+          <OPTION value="1">texte</OPTION>
+          <OPTION selected value="2">rond</OPTION>
+          <OPTION value="3">carré</OPTION>
+
+        </SELECT>
+      <input id="text" type="text" name="firstname" value="Texte annotation"/>
+      <input id="start" type="number" name="firstname" value="0"/>
+      <input id="end" type="number" name="firstname" value="5"/>
+      <input id="y" type="number" name="firstname" value="1"/>
+      <input id="x" type="number" name="firstname" value="1"/>
+    </form>
+
+  <button onclick="myFunction()">Envoyer l'annotation</button>
+
+  </body>
+  <script src="canvas.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+      myFunction = function() {
+          var e = document.getElementById("shape");
+          var url = "https://node.edouardg.fr/annotation";
+          var http = new XMLHttpRequest();
+          var params = JSON.stringify({
+              "time_start": document.getElementById("start").value,
+              "time_end": document.getElementById("end").value,
+              "text": document.getElementById("text").value,
+              "shape": {
+                  "type": e.options[e.selectedIndex].value,
+                  "position_x": document.getElementById("x").value,
+                  "position_y": document.getElementById("y").value
+              },
+              "video":"58988f1d5979a510347a7e1c"
+          });
+
+
+          http.open("POST", url, true);
+          http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+          http.withCredentials = true;
+
+          http.onreadystatechange = function () {
+              if (http.readyState == 3 && http.status == 200) {
+                  console.log(http.responseText);
+              }else if (http.status == 400){
+                  console.log(http.responseText);
+              }
+          };
+          http.send(params);
+      };
+  </script>
+  
+</html>

@@ -35,7 +35,8 @@ Edouard Germain :
 - refactoring avec des modules/requires
 - compléter le serveur
 - génération de la documentation
-- déploiement sur le VPS
+- déploiement 
+- aide intégration (cf XMLhhtpRequests_examples)
 
 ***********
 1) START APP

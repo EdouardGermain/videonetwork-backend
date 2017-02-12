@@ -1,0 +1,36 @@
+<!--
+ Author : Edouard Germain
+ Example post-integration
+-->
+
+<script>
+var url = "https://node.edouardg.fr";
+        var http2= new XMLHttpRequest();
+        path = "/logout";
+
+        http2.open("GET", url+path, true);
+
+        http2.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        //http2.setRequestHeader("Origin", "http://www.edouardg.fr");
+        http2.withCredentials = true;
+
+        http2.onreadystatechange = function () {
+            if (http2.readyState == 4 && http2.status == 200) {
+                console.log("user disconnected :" +http2.responseText);
+
+            }else if (http2.status == 400){
+                console.log(http2.responseText);
+            }
+        };
+        http2.send();
+   
+</script>
+
+<ul>
+	<li><a href="getuser.html">voir l'utilisateur</a></li>
+	<li><a href="posttest.html">POST /video test</a></li>
+	<li><a href="sendfile.html">envoyer une photo</a></li>
+	<li><a href="canvas.html">dessiner dans un canvas</a></li>
+	<li><a href="test_client.html">login</a></li>
+	<li><a href="logout.html">logout</a></li>
+</ul>
