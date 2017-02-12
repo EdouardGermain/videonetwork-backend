@@ -41,7 +41,8 @@ Edouard Germain :
 ***********
 1) START APP
 ***********
-
+Lancer mongo : ```mongod --dbpath /var/lib/mongodb/ --sslMode requireSSL --sslPEMKeyFile ./config/certificate/mongodb.pem``` 
+<br/>
 Lancer l'application : ```node app.js```
 <br/>
 Faire tourner en continue l'application  : ```forever start app.js``` 
