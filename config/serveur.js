@@ -24,6 +24,8 @@ module.exports = function(app,passport) {
 
         var allowedOrigins = ['http://localhost', 'http://localhost:8080', 'http://127.0.0.1:8080', 'http://127.0.0.1'];
         var origin = req.headers.origin;
+        console.log(origin);
+        console.log(allowedOrigins.indexOf(origin));
         if(allowedOrigins.indexOf(origin) > -1){
             res.header('Access-Control-Allow-Origin', origin);
         }

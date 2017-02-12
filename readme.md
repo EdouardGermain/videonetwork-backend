@@ -3,15 +3,17 @@ VIDEONETWORK-BACKEND
 ***********
 
 L'application web a été développé en Javascript , avec Node JS dans le cadre du cours "Programable Web". 
-Pour la persistence des données et des sessions, nous avons utilisés MongoDB même s'il aurait été peut-être
+Pour la persistance des données et des sessions, nous avons utilisés MongoDB même s'il aurait été peut-être
 plus pertinent d'utiliser une BDD NoSQL key-value comme Redis pour gérer les sessions.<br/>
 Notre serveur permet de gérer :
-utilisateur (connexion , déconnexion, s'inscrire, supprimer son compte), photo , video, playlist, annotation, commentaire, likes..
-En somme, tous les modèles dont a besoin un bon "videonetwork".
+utilisateur (connexion , déconnexion, s'inscrire, supprimer son compte), photo (upload/récupération), video (S/CRUD), playlist (CRUD), annotation (CRUD), commentaire (CRUD), likes (CRUD)..
+En somme, toutes les fonctionnalités dont a besoin un bon "videonetwork".
 
 
-Le serveur a été implémenté de façon à avoir un micro-framework qui génère (presque) automatiquement le "RESTfull routing".
+Le serveur a été implémenté de façon à avoir un "framework fait maison" réutilisable pour d'autres projets. 
+Il génère (presque) automatiquement le "RESTfull routing" à partir des modèles.
 Il suffit de copier/coller les trois templates (cf partie 3) ) et de les compléter en fonction de nos besoins.
+Un script sera fait pour automatiser cette tâche.
 
 Avantages : 
 - gain en productivité sur le long terme
