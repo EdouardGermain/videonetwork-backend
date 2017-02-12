@@ -29,11 +29,11 @@ fs.readdirSync(__dirname+'/routes/').forEach(function(fileName) //get all routes
 
 app.listen(8085);
 
-/*var options = {
-    key: fs.readFileSync(__dirname+'/config/key.pem'),
-    cert: fs.readFileSync(__dirname+'/config/cert.pem')
+var options = {
+    key: fs.readFileSync(__dirname+'/config/certificate/key.pem'),
+    cert: fs.readFileSync(__dirname+'/config/certificate/cert.pem')
 };
-https.createServer(options, app).listen(8086);*/
+https.createServer(options, app).listen(8086);
 
 console.log('Documentation : http://localhost:8085/apidoc'); // provide documentation api's url
 
