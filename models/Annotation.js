@@ -8,7 +8,12 @@ var mongoose=require('mongoose');
 var ShapeSchema = mongoose.Schema({
     type: String,
     position_x: Number,
-    position_y: Number
+    position_y: Number,
+    size: Number,
+    fill: String,
+    stroke: String,
+    stroke_thikness:Number,
+    font:String
 });
 
 var ObjectSchema = mongoose.Schema({
