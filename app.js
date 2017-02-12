@@ -30,8 +30,8 @@ fs.readdirSync(__dirname+'/routes/').forEach(function(fileName) //get all routes
 app.listen(8085);
 
 /*var options = {
-    key: fs.readFileSync(__dirname+'/config/certificate/key.pem'),
-    cert: fs.readFileSync(__dirname+'/config/certificate/cert.pem')
+    key: fs.readFileSync(__dirname+'/config/key.pem'),
+    cert: fs.readFileSync(__dirname+'/config/cert.pem')
 };
 https.createServer(options, app).listen(8086);*/
 
